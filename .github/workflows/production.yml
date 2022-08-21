@@ -20,8 +20,8 @@ jobs:
         working-directory: ./app
       - name: Deploy to Heroku
         uses: akhileshns/heroku-deploy@v3.12.12
-        working-directory: ./app
         with:
           heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
           heroku_app_name: 'restaurant-at-unimelb'
           heroku_email: 'yihang1@student.unimelb.edu.au'
+          appdir: "app"
