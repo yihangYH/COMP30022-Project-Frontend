@@ -7,7 +7,7 @@ function MaigPage(props){
         <div>
             <Header btnText="Log out" />
             <div className='main_content'>
-                <button>Create new</button>
+                <button className='create_new'>Create new</button>
             </div>
             <div className='post_list'>
                 <ul className='main_page_ul'>
@@ -19,6 +19,19 @@ function MaigPage(props){
                     </li>
                     <li>
                         <Post />
+                    </li>
+                </ul>
+            </div>
+            <div className='profile'>
+                <ul>
+                    <li>
+                        picture
+                    </li>
+                    <li>
+                        name
+                    </li>
+                    <li>
+                        favourite resturant
                     </li>
                 </ul>
             </div>

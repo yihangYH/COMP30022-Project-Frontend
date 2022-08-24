@@ -20,11 +20,11 @@ function Post(props){
                         <div>
                             <ul>
                                 <li className='res_name'>
-                                    <img className='name_pic' src={require('../res/name.PNG')} />
+                                    <img className='name_pic' src={process.env.PUBLIC_URL + '/name.png'} />
                                     <div className='name_text'>asdaa</div>
                                 </li>
                                 <li className='res_location'>
-                                <img className='location_pic' src={require('../res/location.png')} />
+                                <img className='location_pic' src={process.env.PUBLIC_URL + '/location.png'} />
                                 asdassa</li>
                             </ul>
                         </div>
@@ -33,12 +33,9 @@ function Post(props){
                         </div>
                     </li>
                     <li>
-                        <img className='pic' src={require('../res/test.png')} />
+                        <img className='pic' src={process.env.PUBLIC_URL + '/test.png'} />
                     </li>
                 </ul>
-            </div>
-            <div className='personal_info'>
-                
             </div>
         </div>
 

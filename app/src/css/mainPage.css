@@ -21,6 +21,10 @@
     height: 40px;
 }
 
+.create_new{
+    cursor:pointer;
+}
+
 .post_list {
     display: flex;
     position: absolute;
