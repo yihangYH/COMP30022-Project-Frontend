@@ -26,6 +26,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 17.x
+      - run: heroku plugins:install heroku-builds
       - run: heroku builds:cache:purge -a app
       - run: npm install
         working-directory: ./app
