@@ -9,6 +9,14 @@ on:
 env:
   CI: false
 jobs:
+  clear-catch:
+    - name: clear catch
+      run: heroku builds:cache:purge -a app
+      with:
+        heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+        heroku_app_name: 'restaurant-at-unimelb'
+        heroku_email: 'yihang1@student.unimelb.edu.au'
+        appdir: "app"
   deploy:
     runs-on: ubuntu-latest
     steps:
