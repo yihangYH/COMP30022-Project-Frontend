@@ -1,0 +1,128 @@
+.button{
+    display: flex;
+    position: absolute;
+    top: 30%;
+    left: 5%;
+    width: 90%;
+}
+.detail{
+    display: flex;
+    position: absolute;
+    top: 45%;
+    left: 5%;
+    width: 90%;
+}
+
+.detail_list{
+    list-style: none;
+    width: 100%;
+}
+
+.title{
+    font-size: xx-large;
+    font-weight: bolder;
+}
+
+.back{
+    border-radius: 20px;
+    border-width: thin;
+    border-color: gray;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+    padding: 10px 24px;
+    background-color: white;
+    width: 96px;
+    height: 50px;
+    top: 22%;
+    cursor:pointer;
+    display: inline;
+}
+
+.edit{
+    border-radius: 20px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    border: none;
+    color: white;
+    padding: 10px 24px;
+    background-color: #FF7539;
+    width: 96px;
+    height: 50px;
+    cursor:pointer;
+    position: absolute;
+    left:80%;  
+    display: flex; 
+    float: right;
+}
+
+.infor{
+    display: flex;
+    width: 100%;
+    color: gray;
+    padding-top: 1%;
+}
+
+
+.infor_location{
+    display: flex;
+    position: relative;
+    left: -2%;
+}
+
+.food_pic{
+    position: relative;
+    top: -18%;
+    width: 15%;
+    height: 70%;
+    display: flex;
+}
+.infor_rest_name{
+    padding-top: 1%;
+}
+.infor_location{
+    padding-top: 1%;
+}
+
+.rate_value{
+    padding-left: 1%;
+    font-size: large;
+    color: #FF7539;
+}
+
+.rest_name{
+    display: inline-flex;
+    padding-left: 40%;
+}
+
+.rest_location{
+    display: inline-flex;
+}
+
+.location_pic{
+    position: relative;
+    top: -18%;
+    width: 15%;
+    height: 70%;
+    display: flex;
+    height: auto;
+}
+.main_pic{
+    width: 80%;
+    height: 80%;
+    margin-left: 5%;
+    border-radius: 20px;
+}
+
+.description{
+    line-height: 20pt;
+    margin-top: 2%;
+}
+
+.food_element_comment ul{
+    list-style: none;
+}
