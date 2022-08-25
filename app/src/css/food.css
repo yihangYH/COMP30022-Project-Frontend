@@ -1,0 +1,57 @@
+.food_element{
+    margin-top: 2%;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    border-radius: 20px;
+}
+
+.food_pic_comment{
+    margin-top: 2%;
+    margin-left: 2%;
+    margin-bottom: 2%;
+    width: 70%;
+    border-radius: 20px;
+}
+
+.food_description{
+    display: flex;
+    position: relative;
+}
+
+.food_element_li{
+    display: flex;
+    list-style: none;
+    width: 100%;
+    height: 100%;
+    margin-bottom: 5%;
+}
+
+.food_description ul{
+    list-style: none;
+    padding-top: 2%;
+}
+
+.food_name{
+    font-size: xx-large;
+    font-weight: bolder;
+}
+
+.rating_text{
+    font-size: x-large;
+    padding-left: 50%;
+    color: gray;
+}
+
+.rating_value_food{
+    color: #FF7539;
+    font-size: x-large;
+    padding-left: 2%;
+}
+.food_description_li{
+    width: 100%;
+    height: 100%;
+}
+
+.food_description_text{
+    padding-top: 2%;
+    line-height: 20pt;
+}

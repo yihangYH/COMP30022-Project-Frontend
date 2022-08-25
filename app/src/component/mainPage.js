@@ -1,8 +1,11 @@
-import React from 'react';
 import Header from './header';
 import '../css/mainPage.css'
 import Post from './post';
+import React , { useEffect } from 'react';
 function MaigPage(props){
+    useEffect(() => {
+        document.title = 'Main Page';
+    });
     return(
         <div>
             <Header btnText="Log out" />
