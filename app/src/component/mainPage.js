@@ -28,13 +28,13 @@ function MaigPage(props){
             <div className='profile'>
                 <ul>
                     <li>
-                        picture
+                        <img className='profile_pic' src={process.env.PUBLIC_URL + '/profile.png'} />
                     </li>
-                    <li>
+                    <li className='profile_name'>
                         name
                     </li>
-                    <li>
-                        favourite resturant
+                    <li className='prfile_fav_res'>
+                        ❤️ favourite resturant
                     </li>
                 </ul>
             </div>

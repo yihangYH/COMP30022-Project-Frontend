@@ -19,6 +19,7 @@
     margin-top: 1%;
     color: gray;
     font-size: large;
+    padding-left: 4%;
 }
 
 .li_rating_value{
@@ -39,7 +40,7 @@
     position: relative;
     float: right;
     padding-right: 10%;
-    padding-top: 10%;
+    padding-top: 15%;
     color: gray;
     
 }
@@ -47,7 +48,7 @@
 .res_name{
     width: auto;
     height: auto;
-    padding-top: 2%;
+    margin-top: 5%;
 }
 
 .res_location{
@@ -59,6 +60,7 @@
     border-radius: 20px;
     padding: 2% 2% 2% 2%;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    float: right;
 }
 
 .pic{
@@ -67,26 +69,25 @@
     border-radius: 20px;
 }
 
-.name_pic{
+.food_pic_post{
     width: 5%;
-    height: 4.5%;
-    /* top: 5%; */
+    height: 5%;
 }
+
+.food_pic_in_post{
+    float: right;
+}
+
+
 .name_text{
-    display: inline;
+    padding-left: 2%;
 }
-.location_pic{
+.location_text{
+    padding-left: 2%;
+}
+.location_pic_post{
     width: 5%;
-    height: 4.5%;
+    height: 5%;
 }
-/* .personal_info{
-    display: flex;
-    position: relative;
-    left: 50%;
-    top: 50%;
-    margin-bottom: 10%;
-    border-radius: 20px;
-    padding: 2% 2% 2% 2%;
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-} */
+
 
