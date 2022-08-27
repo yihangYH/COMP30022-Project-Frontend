@@ -20,25 +20,23 @@ function Post(props){
                         <div>
                             <ul>
                                 <li className='res_name'>
-                                    <img className='name_pic' src={require('../res/name.PNG')} />
-                                    <div className='name_text'>asdaa</div>
+                                    🍽️ 
+                                    <span className='name_text'>Black Angus Steakhouse</span>
                                 </li>
                                 <li className='res_location'>
-                                <img className='location_pic' src={require('../res/location.png')} />
-                                asdassa</li>
+                                    📍
+                                    <span className='location_text'>4517 Washington Ave. Manchester, Kentucky 39495</span>
+                                </li>
                             </ul>
                         </div>
                         <div className='time'>
                             <p>23/08/2022</p>
                         </div>
                     </li>
-                    <li>
-                        <img className='pic' src={require('../res/test.png')} />
+                    <li className='food_pic_in_post'>
+                        <img className='pic' src={process.env.PUBLIC_URL + '/test.png'} />
                     </li>
                 </ul>
-            </div>
-            <div className='personal_info'>
-                
             </div>
         </div>
 
