@@ -19,6 +19,12 @@ export default function Login() {
     return (
       <div className="Login">
         <Header display='none'></Header>
+        <div className='Background'>
+            <img src={process.env.PUBLIC_URL + '/background.png'} />
+        </div>
+        <div className='Welcome'>
+            <p>Welcome Back</p>
+        </div>
         <Form onSubmit={handleSubmit}>
           <Form.Group size="lg" controlId="email">
             <Form.Label>Email</Form.Label>
