@@ -1,20 +1,46 @@
-import React , { useEffect } from 'react';
+import React , { useState } from 'react';
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 import Header from './header';
-function Login(){
-    return (
-        <div>
-            <Header display='none'/>
-            {/* <form>
-                <div className='login'>
-                    <input type="text" placeholder="Enter Username" name="username" required> </input>
-                    <input type="text" placeholder="Enter Username" name="username" required> </input>
-                    <button type="submit">Login</button>
-                    <button type="submit">Register</button>
-                </div>
-            </form> */}
-        </div>
-        
-    )
-}
+import '../css/login.css'
 
-export default Login;
+export default function Login() {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+  
+    function validateForm() {
+      return email.length > 0 && password.length > 0;
+    }
+  
+    function handleSubmit(event) {
+      event.preventDefault();
+    }
+  
+    return (
+      <div className="Login">
+        <Header display='none'></Header>
+        <Form onSubmit={handleSubmit}>
+          <Form.Group size="lg" controlId="email">
+            <Form.Label>Email</Form.Label>
+            <Form.Control
+              autoFocus
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </Form.Group>
+          <Form.Group size="lg" controlId="password">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </Form.Group>
+          <Button block="true" size="lg" type="submit" disabled={!validateForm()}>
+            Login
+          </Button>
+        </Form>
+      </div>
+    );
+}

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Navigate } from 'react-router-dom';
 import '../css/header.css';
 function Header(props){
     return(
@@ -10,7 +9,7 @@ function Header(props){
             <div>
                 <button id = "btn" className='login' onClick={event =>  window.location.href='/login'}
                     style = {{display: `${props.display}`}}>{props.btnText}</button>
-                </div>
+            </div>
         </div>
 
     )
