@@ -1,0 +1,21 @@
+@media all and (min-width: 480px) {
+
+    .Background {
+        width: 20px;
+        height: 20px;
+        
+        padding-top: 30%;
+        padding-left: 50%;
+    }
+
+    .Welcome {
+        padding-top: 30%;
+        padding-left: 43%;
+        font-size: x-large;
+    }
+    .Login form {
+        padding-top: 30%;
+        padding-left: 43%;
+        max-width: 320px;
+    }
+}
