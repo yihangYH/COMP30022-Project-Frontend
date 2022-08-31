@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import Home from './component/home';
 import MaigPage from './component/mainPage';
 import Comment from './component/comment';
+import Register from './component/register'
 import {
     BrowserRouter as Router,
     Routes,
@@ -17,6 +18,7 @@ root.render(
             <Route exact path='/' element={< Home />}></Route>
             <Route exact path='/mainpage/:id' element={< MaigPage />}></Route>
             <Route exact path='/comment/:userId/:postId' element={< Comment />}></Route>
+            <Route exact path='/register' element={< Register />}></Route>
         </Routes>
     </Router>
 //   <React.StrictMode>
