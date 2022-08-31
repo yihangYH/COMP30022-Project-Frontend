@@ -45,7 +45,42 @@ function Register(){
                                     <Upload alt="just one pic" listType="picture-card" showUploadList={{showPreviewIcon:false,showRemoveIcon:false}} onPreview={()=>{}}>{totalFormPic?null:"Profile Picture"}</Upload>
                                 </Form.Item>
                             </div>
-                                
+                                <Form.Item
+                                    style={{ width:"40%", flex: 1,}}
+                                    name="email"
+
+                                >
+                                    <Input type="email" placeholder="Email"/>
+                                </Form.Item>
+
+                                <Form.Item
+                                    style={{  width:"40%", flex: 1 }}
+                                    name="Username"
+
+                                >
+                                    <Input placeholder="Username"/>
+                                </Form.Item>
+
+                                <Form.Item
+                                    style={{width:"40%", flex: 1 }}
+                                    name="Password"
+                                >
+                                    <Input type={showPassword} placeholder="Password"/>
+                                </Form.Item>
+
+                                <Form.Item
+                                    style={{width:"40%", flex: 1 }}
+                                    name="Confirm Password"
+                                >
+                                    <Input type={showPassword} placeholder="Confirm Password"/>
+                                </Form.Item>
+
+                                <Form.Item
+                                    style={{width:"40%", flex: 1 }}
+                                    name="Favourite Restaurant"
+                                >
+                                    <Input placeholder="Favourite Restaurant"/>
+                                </Form.Item>
                             </div>
                             <Checkbox className='register_password' onChange={ event => onChange(event) }>Show Password</Checkbox>
                         <ul className='resgiste_btn_ul'>
