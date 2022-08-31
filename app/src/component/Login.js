@@ -1,60 +1,83 @@
-import React , { useState } from 'react';
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
+import React , { useEffect } from 'react';
 import Header from './header';
-import '../css/login.css'
+import "antd/dist/antd.min.css";
+import '../css/login.css';
+import { useState } from "react";
+import { Button, Checkbox, Form, Input, Upload } from "antd"
 
-export default function Login() {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-  
-    function validateForm() {
-      return email.length > 0 && password.length > 0;
+function Login(){
+    useEffect(() => {
+        document.title = 'Lgoin';
+    });
+    const [forms, setForms] = useState([])
+    const [totalFormPic, setTotalFormPic] = useState(false);
+    const [showPassword, setShowpassword] = useState("Password");
+    const headFormRequest = (data) => {
+        console.log(data,"handleTotalForm");
+      };
+    const handleTotalForm = (fileds)=>{
+        fileds.pics = forms.filter(item=>item.submit);
+        headFormRequest(fileds)
     }
-  
-    function handleSubmit(event) {
-      event.preventDefault();
+    const handleSubForm = (fileds,formIndex,formId)=>{
+        const tmp = [...forms];
+        tmp[formIndex].submit = true;
+        setForms(tmp)
     }
-  
-    return (
+    const onChange = (event)=>{
+        if(showPassword === "Password"){
+            setShowpassword("text")
+        }else{
+            setShowpassword("Password")
+        }
+    }
+    return(
         <div>
-            <Header display='none' />
-            <div className='login_content'>
-                <ul className='login_content_ul'>
-                    <li>
-                    <div className='Welcome'>
-                        <p>Welcome Back</p>
-                    </div>
-                    <Form onSubmit={handleSubmit}>
-                        <Form.Group size="lg" controlId="email">
-                        <Form.Label>Email</Form.Label>
-                        <Form.Control
-                            autoFocus
-                            type="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                        />
-                        </Form.Group>
-                        <Form.Group size="lg" controlId="password">
-                        <Form.Label>Password</Form.Label>
-                        <Form.Control
-                            type="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                        />
-                        </Form.Group>
-                        <Button block="true" size="lg" type="submit" disabled={!validateForm()}>
-                        Login
-                        </Button>
+            <Header btnText="Log in"/>
+            <div className='login_section'>
+                
+                <ul className='login_section_ul'>
+                    <li className='login_section_main'>
+                    <Form  onFinish={handleTotalForm}>
+                        <div>
+                            <h1 className='Login_title'>Welcome Back!</h1>
+                            <div >
+                                    <Form.Item
+                                        style={{ width:"40%", flex: 1,}}
+                                        name="email"
+
+                                    >
+                                        <Input type="email" placeholder="Email"/>
+                                    </Form.Item>
+
+                                    <Form.Item
+                                        style={{width:"40%", flex: 1 }}
+                                        name="Password"
+                                    >
+                                        <Input type={showPassword} placeholder="Password"/>
+                                    </Form.Item>
+                                </div>
+                                <Checkbox className='show_password' onChange={ event => onChange(event) }>Show Password</Checkbox>
+                            <ul className='login_btn_ul'>
+                                <li>
+                                    <Button htmlType="submit" shape="round" className="login_submit_btn" >Submit</Button>
+                                </li>
+                                <li>
+                                    <Button htmlType="submit" shape="round" className="login_cancle_btn">Cancle</Button>
+                                </li>
+                            </ul>
+                        </div>
                     </Form>
                     </li>
-                    <li>
-                        <img  className="login_img" src={process.env.PUBLIC_URL + '/background.png'} />
+                    <li className='login_pic_li'>
+                        <img className='login_pic' src={process.env.PUBLIC_URL + '/register.png'} />
                     </li>
-
                 </ul>
             </div>
 
         </div>
-    );
+    )
+
 }
+
+export default Login;
