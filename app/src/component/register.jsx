@@ -31,7 +31,42 @@ function Register(){
             setShowpassword("Password")
         }
     }
-    return
+    return(
+        <div>
+        <Header btnText="Log in"/>
+        <div className='register_section'>
+            <ul className='register_section_ul'>
+                <li className='register_section_main'>
+                <Form  onFinish={handleTotalForm}>
+                    <div>
+                        <div >
+                            <div style={{flex:1}} id="totalForm" className='prfile_pci_upload'>
+                                <Form.Item getValueFromEvent={(e)=>{ setTotalFormPic(true);return e.file}} name="pic" >
+                                    <Upload alt="just one pic" listType="picture-card" showUploadList={{showPreviewIcon:false,showRemoveIcon:false}} onPreview={()=>{}}>{totalFormPic?null:"Profile Picture"}</Upload>
+                                </Form.Item>
+                            </div>
+                                
+                            </div>
+                            <Checkbox className='register_password' onChange={ event => onChange(event) }>Show Password</Checkbox>
+                        <ul className='resgiste_btn_ul'>
+                            <li>
+                                <Button htmlType="submit" shape="round" className="resgister_submit_btn" >Submit</Button>
+                            </li>
+                            <li>
+                                <Button htmlType="submit" shape="round" className="resgister_cancle_btn">Cancle</Button>
+                            </li>
+                        </ul>
+                    </div>
+                </Form>
+                </li>
+                <li className='register_pic_li'>
+                    <img className='register_pic' src={process.env.PUBLIC_URL + '/register.png'} />
+                </li>
+            </ul>
+        </div>
+
+    </div>
+    )
 
 }
 
