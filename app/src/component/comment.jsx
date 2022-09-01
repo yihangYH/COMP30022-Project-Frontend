@@ -6,11 +6,14 @@ function Comment(props){
     useEffect(() => {
         document.title = 'Post';
     })
+    const backToMain = () => {
+        window.location.href = '/mainpage/1';
+    }
     return(
         <div>
             <Header btnText="Log out" />
             <div className='button'>
-                <button className='back'>Back</button>
+                <button className='back' onClick={backToMain}>Back</button>
                 <button className='edit'>Edit</button>
             </div>
             <div className='detail'>
@@ -22,11 +25,11 @@ function Comment(props){
                         <p className='infor'>Rating: 
                         <span className='rate-value'>3.8</span>
                         <span className='rest-name'>
-                            <img className='food-pic' src={process.env.PUBLIC_URL + '/food.png'} />
+                            🍽️ 
                             <span className='infor-rest-name'>Uno Chicago Grill</span>
                         </span>
                         <span className='rest-location'>
-                            <img className='location-pic' src={process.env.PUBLIC_URL + '/location.png'} />
+                            📍
                             <span className='infor-ocation'>1901 Thornridge Cir. Shiloh, Hawaii 81063</span>
                         </span>
                         </p>

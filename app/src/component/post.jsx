@@ -3,7 +3,7 @@ import '../css/post.css'
 function Post(props){
 
     const handleClick = () => {
-        
+        window.location.href = `/comment/1/1`;
     }
     return(
         <div>
