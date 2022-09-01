@@ -85,7 +85,7 @@ function Login(){
                                 <Checkbox className='show-password' onChange={ event => onChange(event) }>Show Password</Checkbox>
                             <ul className='login-btn-ul'>
                                 <li>
-                                    <Button htmlType="submit" shape="round" className="login-submit-btn">Submit</Button>
+                                    <Button htmlType="submit" shape="round" className="login-submit-btn">Login</Button>
                                 </li>
                                 <li>
                                     <Button htmlType="button" shape="round" className="login-cancle-btn" onClick={cancel}>Cancle</Button>
