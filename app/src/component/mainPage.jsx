@@ -6,16 +6,17 @@ function MaigPage(props){
     useEffect(() => {
         document.title = 'Main Page';
     });
+
     return(
         <div>
-            <Header btnText="Log out" />
-            <div className='main_content'>
-                <button className='create_new'>Create new</button>
+            <Header btnText="Log out" color="black" backgroundColor="white" border="2px solid black"/>
+            <div className='main-content'>
+                <button className='create-new' onClick={event =>  window.location.href='/createpost/1'}>Create new</button>
             </div>
-            <div className='post_list'>
-                <ul className='main_page_ul'>
+            <div className='post-list'>
+                <ul className='main-page-ul'>
                     <li>
-                        <Post />
+                        <Post/>
                     </li>
                     <li>
                         <Post />
@@ -28,13 +29,13 @@ function MaigPage(props){
             <div className='profile'>
                 <ul>
                     <li>
-                        <img className='profile_pic' src={process.env.PUBLIC_URL + '/profile.png'} />
+                        <img className='profile-pic' src={process.env.PUBLIC_URL + '/profile.png'} />
                     </li>
-                    <li className='profile_name'>
-                        name
+                    <li className='profile-name'>
+                        demo
                     </li>
-                    <li className='prfile_fav_res'>
-                        ❤️ favourite resturant
+                    <li className='prfile-fav-res'>
+                        ❤️ demo resturant
                     </li>
                 </ul>
             </div>

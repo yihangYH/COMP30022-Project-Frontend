@@ -14,25 +14,25 @@ function Comment(props){
                 <button className='edit'>Edit</button>
             </div>
             <div className='detail'>
-                <ul className='detail_list'>
+                <ul className='detail-list'>
                     <li className='title'>
                         <p>The unseen of spending three years at Pixelgrade</p>
                     </li>
                     <li >
                         <p className='infor'>Rating: 
-                        <span className='rate_value'>3.8</span>
-                        <span className='rest_name'>
-                            <img className='food_pic' src={process.env.PUBLIC_URL + '/food.png'} />
-                            <span className='infor_rest_name'>Uno Chicago Grill</span>
+                        <span className='rate-value'>3.8</span>
+                        <span className='rest-name'>
+                            <img className='food-pic' src={process.env.PUBLIC_URL + '/food.png'} />
+                            <span className='infor-rest-name'>Uno Chicago Grill</span>
                         </span>
-                        <span className='rest_location'>
-                            <img className='location_pic' src={process.env.PUBLIC_URL + '/location.png'} />
-                            <span className='infor_location'>1901 Thornridge Cir. Shiloh, Hawaii 81063</span>
+                        <span className='rest-location'>
+                            <img className='location-pic' src={process.env.PUBLIC_URL + '/location.png'} />
+                            <span className='infor-ocation'>1901 Thornridge Cir. Shiloh, Hawaii 81063</span>
                         </span>
                         </p>
                     </li>
                     <li>
-                        <img className='main_pic' src={process.env.PUBLIC_URL + '/test1.png'} />
+                        <img className='main-pic' src={process.env.PUBLIC_URL + '/test1.png'} />
                     </li>
                     <li>
                         <p className='description'>
@@ -47,7 +47,7 @@ function Comment(props){
                         </p>
                     </li>
                     <li>
-                        <div className='food_element_comment'>
+                        <div className='food-element-comment'>
                             <ul>
                                 <li>
                                     <Food />

@@ -3,7 +3,7 @@
     margin: 0;
 }
 
-.post_title{
+.post-title{
     font-size: x-large;
     width: 92%;
 }
@@ -12,17 +12,17 @@
     display: flex;
 }
 
-.content_pic{
+.content-pic{
     display: flex;
 }
-.li_rating{
+.li-rating{
     margin-top: 1%;
     color: gray;
     font-size: large;
     padding-left: 4%;
 }
 
-.li_rating_value{
+.li-rating-value{
     margin-top: 1.4%;
     padding-left: 2%;
     color: #FF7539;
@@ -40,22 +40,22 @@
     position: relative;
     float: right;
     padding-right: 10%;
-    padding-top: 15%;
+    padding-top: 5%;
     color: gray;
     
 }
 
-.res_name{
+.res-name{
     width: auto;
     height: auto;
     margin-top: 5%;
 }
 
-.res_location{
+.res-location{
     padding-top: 2%;
 }
 
-.post_content{
+.post-content{
     margin-bottom: 10%;
     border-radius: 20px;
     padding: 2% 2% 2% 2%;
@@ -65,27 +65,27 @@
 
 .pic{
     width: 100%;
-    height: 100%;
+    height: auto;
     border-radius: 20px;
 }
 
-.food_pic_post{
+.food-pic-post{
     width: 5%;
     height: 5%;
 }
 
-.food_pic_in_post{
+.food-pic-in-post{
     float: right;
 }
 
 
-.name_text{
+.name-text{
     padding-left: 2%;
 }
-.location_text{
+.location-text{
     padding-left: 2%;
 }
-.location_pic_post{
+.location-pic-post{
     width: 5%;
     height: 5%;
 }

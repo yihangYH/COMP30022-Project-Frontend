@@ -13,7 +13,7 @@
     width: 90%;
 }
 
-.detail_list{
+.detail-list{
     list-style: none;
     width: 100%;
 }
@@ -68,42 +68,42 @@
 }
 
 
-.infor_location{
+.infor-ocation{
     display: flex;
     position: relative;
     left: -2%;
 }
 
-.food_pic{
+.food-pic{
     position: relative;
     top: -18%;
     width: 15%;
     height: 70%;
     display: flex;
 }
-.infor_rest_name{
+.infor-rest-name{
     padding-top: 1%;
 }
-.infor_location{
+.infor-ocation{
     padding-top: 1%;
 }
 
-.rate_value{
+.rate-value{
     padding-left: 1%;
     font-size: large;
     color: #FF7539;
 }
 
-.rest_name{
+.rest-name{
     display: inline-flex;
     padding-left: 40%;
 }
 
-.rest_location{
+.rest-location{
     display: inline-flex;
 }
 
-.location_pic{
+.location-pic{
     position: relative;
     top: -18%;
     width: 15%;
@@ -111,7 +111,7 @@
     display: flex;
     height: auto;
 }
-.main_pic{
+.main-pic{
     width: 80%;
     height: 80%;
     margin-left: 5%;
@@ -123,6 +123,6 @@
     margin-top: 2%;
 }
 
-.food_element_comment ul{
+.food-element-comment ul{
     list-style: none;
 }

@@ -1,6 +1,7 @@
 import React , { useEffect } from 'react';
 import Header from './header';
 import "antd/dist/antd.min.css";
+import Swal from 'sweetalert2'
 import '../css/register.css';
 import { useState } from "react";
 import { Button, Checkbox, Form, Input, Upload } from "antd"
@@ -13,17 +14,27 @@ function Register(){
     const [totalFormPic, setTotalFormPic] = useState(false);
     const [showPassword, setShowpassword] = useState("Password");
     const headFormRequest = (data) => {
-        console.log(data.pic.thumbUrl,"handleTotalForm");
-      };
+        if(data.password != data.confirmPassword){
+            Swal.fire({
+                title: 'Error!',
+                text: 'Please enter password and confirm password not match',
+                icon: 'error',
+                confirmButtonText: 'Retry'
+            })
+        }else{
+            window.location.href = "/login"
+        }
+        // console.log(data.pic.thumbUrl,"handleTotalForm");
+    };
     const handleTotalForm = (fileds)=>{
         fileds.pics = forms.filter(item=>item.submit);
         headFormRequest(fileds)
     }
-    const handleSubForm = (fileds,formIndex,formId)=>{
-        const tmp = [...forms];
-        tmp[formIndex].submit = true;
-        setForms(tmp)
+
+    const backToLogin = () => {
+        window.location.href = "/login"
     }
+  
     const onChange = (event)=>{
         if(showPassword === "Password"){
             setShowpassword("text")
@@ -33,21 +44,31 @@ function Register(){
     }
     return(
         <div>
-        <Header btnText="Log in"/>
-        <div className='register_section'>
-            <ul className='register_section_ul'>
-                <li className='register_section_main'>
+        <Header btnText="Log in" display="none"/>
+        <div className='register-section'>
+            <ul className='register-section-ul'>
+                <li className='register-section-main'>
                 <Form  onFinish={handleTotalForm}>
                     <div>
                         <div >
-                            <div style={{flex:1}} id="totalForm" className='prfile_pci_upload'>
-                                <Form.Item getValueFromEvent={(e)=>{ setTotalFormPic(true);return e.file}} name="pic" >
-                                    <Upload alt="just one pic" listType="picture-card" showUploadList={{showPreviewIcon:false,showRemoveIcon:false}} onPreview={()=>{}}>{totalFormPic?null:"Profile Picture"}</Upload>
+                            <div style={{flex:1}} id="totalForm" className='prfile-pci-upload'>
+                                <Form.Item getValueFromEvent={(e)=>{ setTotalFormPic(e.fileList.length>0?true:false);return e.file}} name="pic" rules={[
+                                        {
+                                        required: true,
+                                        message: 'Please select your profile picture',
+                                        },
+                                    ]} >
+                                    <Upload alt="just one pic" listType="picture-card" showUploadList={{showPreviewIcon:false,showRemoveIcon:true}} >{totalFormPic?null:"Profile Picture"}</Upload>
                                 </Form.Item>
                             </div>
                                 <Form.Item
                                     style={{ width:"40%", flex: 1,}}
-                                    name="email"
+                                    name="email" rules={[
+                                        {
+                                        required: true,
+                                        message: 'Please enter your email',
+                                        },
+                                    ]} 
 
                                 >
                                     <Input type="email" placeholder="Email"/>
@@ -55,7 +76,12 @@ function Register(){
 
                                 <Form.Item
                                     style={{  width:"40%", flex: 1 }}
-                                    name="Username"
+                                    name="username" rules={[
+                                        {
+                                        required: true,
+                                        message: 'Please enter your username',
+                                        },
+                                    ]} 
 
                                 >
                                     <Input placeholder="Username"/>
@@ -63,39 +89,55 @@ function Register(){
 
                                 <Form.Item
                                     style={{width:"40%", flex: 1 }}
-                                    name="Password"
+                                    name="password" rules={[
+                                        {
+                                        required: true,
+                                        message: 'Please enter your password',
+                                        min: 8
+                                        },
+                                    ]} 
                                 >
                                     <Input type={showPassword} placeholder="Password"/>
                                 </Form.Item>
 
                                 <Form.Item
                                     style={{width:"40%", flex: 1 }}
-                                    name="Confirm Password"
+                                    name="confirmPassword" rules={[
+                                        {
+                                        required: true,
+                                        message: 'Please enter confirm your password',
+                                        },
+                                    ]} 
                                 >
                                     <Input type={showPassword} placeholder="Confirm Password"/>
                                 </Form.Item>
 
                                 <Form.Item
                                     style={{width:"40%", flex: 1 }}
-                                    name="Favourite Restaurant"
+                                    name="favouriteRestaurant" rules={[
+                                        {
+                                        required: true,
+                                        message: 'Please enter your favourite restaurant',
+                                        },
+                                    ]} 
                                 >
                                     <Input placeholder="Favourite Restaurant"/>
                                 </Form.Item>
                             </div>
-                            <Checkbox className='register_password' onChange={ event => onChange(event) }>Show Password</Checkbox>
-                        <ul className='resgiste_btn_ul'>
+                            <Checkbox className='register-password' onChange={ event => onChange(event) }>Show Password</Checkbox>
+                        <ul className='resgiste-btn-ul'>
                             <li>
-                                <Button htmlType="submit" shape="round" className="resgister_submit_btn" >Submit</Button>
+                                <Button htmlType="submit" shape="round" className="resgister-submit-btn" >Submit</Button>
                             </li>
                             <li>
-                                <Button htmlType="submit" shape="round" className="resgister_cancle_btn">Cancle</Button>
+                                <Button htmlType="button" shape="round" className="resgister-cancle-btn" onClick={backToLogin}>Cancle</Button>
                             </li>
                         </ul>
                     </div>
                 </Form>
                 </li>
-                <li className='register_pic_li'>
-                    <img className='register_pic' src={process.env.PUBLIC_URL + '/register.png'} />
+                <li className='register-pic-li'>
+                    <img className='register-pic' src={process.env.PUBLIC_URL + '/register.png'} />
                 </li>
             </ul>
         </div>
