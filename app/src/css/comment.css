@@ -71,7 +71,7 @@
 .infor-ocation{
     display: flex;
     position: relative;
-    left: -2%;
+    margin-left: 4%;
 }
 
 .food-pic{
@@ -82,7 +82,9 @@
     display: flex;
 }
 .infor-rest-name{
+    margin-left: 4%;
     padding-top: 1%;
+    width: 100%;
 }
 .infor-ocation{
     padding-top: 1%;
@@ -95,11 +97,13 @@
 }
 
 .rest-name{
+    width: 55%;
     display: inline-flex;
     padding-left: 40%;
 }
 
 .rest-location{
+    margin-left: 4%;
     display: inline-flex;
 }
 
