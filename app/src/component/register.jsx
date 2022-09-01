@@ -127,7 +127,7 @@ function Register(){
                             <Checkbox className='register-password' onChange={ event => onChange(event) }>Show Password</Checkbox>
                         <ul className='resgiste-btn-ul'>
                             <li>
-                                <Button htmlType="submit" shape="round" className="resgister-submit-btn" >Submit</Button>
+                                <Button htmlType="submit" shape="round" className="resgister-submit-btn" >Register</Button>
                             </li>
                             <li>
                                 <Button htmlType="button" shape="round" className="resgister-cancle-btn" onClick={backToLogin}>Cancle</Button>
