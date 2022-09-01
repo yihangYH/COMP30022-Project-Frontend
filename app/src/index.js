@@ -21,7 +21,7 @@ root.render(
             <Route exact path='/mainpage/:id' element={< MainPage />}></Route>
             <Route exact path='/comment/:userId/:postId' element={< Comment />}></Route>
             <Route exact path='/login' element={<Login />}></Route>
-            <Route exact path='/createpost/:userId/:postId' element={< CreatePost />}></Route>
+            <Route exact path='/createpost/:userId' element={< CreatePost />}></Route>
             <Route exact path='/register' element={< Register />}></Route>
         </Routes>
     </Router>

@@ -1,6 +1,10 @@
 import React from 'react';
 import '../css/post.css'
 function Post(props){
+
+    const handleClick = () => {
+        
+    }
     return(
         <div>
             <div className='post-content'>
@@ -8,7 +12,7 @@ function Post(props){
                     <li>
                         <div className='post-title'>
                             <ul className='list'>
-                                <li><p>Where to grow your business as a photographer: site or social media?</p></li>
+                                <li onClick={handleClick} style={{cursor:"pointer"}}><p>Where to grow your business as a photographer: site or social media?</p></li>
                                 <li className='li-rating'>
                                     Rating:
                                 </li>

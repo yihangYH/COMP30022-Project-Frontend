@@ -10,7 +10,7 @@ function CreatePost(){
  
     return(
         <div>
-            <Header btnText="Log in"/>
+            <Header btnText="Log out" color="black" backgroundColor="white" border="2px solid black"/>
             <Create />
         </div>
     )

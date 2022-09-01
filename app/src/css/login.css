@@ -66,12 +66,19 @@
 .login-cancle-btn{
     width: 65%;
     height: 10%;
-    background-color: #FF7539;
     border-radius: 20px;
-    color: white;
     font-size: large;
     cursor: pointer;
 
+}
+
+.register-btn{
+    margin-top: 2%;
+    width: 41%;
+    height: 10%;
+    border-radius: 20px;
+    font-size: large;
+    cursor: pointer;
 }
 
 .ant-input {

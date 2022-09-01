@@ -26,7 +26,12 @@ function Login(){
             })
         }
         
-      };
+    };
+
+    const registerClicked = () => {
+        window.location.href = "/register"
+    }
+
     const handleTotalForm = (fileds)=>{
         formRequest(fileds)
     }
@@ -43,7 +48,7 @@ function Login(){
 
     return(
         <div>
-            <Header btnText="Log in"/>
+            <Header btnText="Log in" display="none"/>
             <div className='login-section'>
                 
                 <ul className='login-section-ul'>
@@ -83,9 +88,10 @@ function Login(){
                                     <Button htmlType="submit" shape="round" className="login-submit-btn">Submit</Button>
                                 </li>
                                 <li>
-                                    <Button htmlType="submit" shape="round" className="login-cancle-btn" onClick={cancel}>Cancle</Button>
+                                    <Button htmlType="button" shape="round" className="login-cancle-btn" onClick={cancel}>Cancle</Button>
                                 </li>
                             </ul>
+                            <Button htmlType="submit" shape="round" className="register-btn" onClick={registerClicked}>Register</Button>
                         </div>
                     </Form>
                     </li>
