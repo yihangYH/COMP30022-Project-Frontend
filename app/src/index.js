@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import Home from './component/home';
 import Comment from './component/comment';
 import MainPage from './component/mainPage';
-import Login from './component/Login';
+import Login from './component/login';
 import CreatePost from './component/createPost';
 import Register from './component/register'
 import {
