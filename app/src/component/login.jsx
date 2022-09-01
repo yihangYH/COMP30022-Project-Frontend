@@ -34,13 +34,13 @@ function Login(){
     return(
         <div>
             <Header btnText="Log in"/>
-            <div className='login_section'>
+            <div className='login-section'>
                 
-                <ul className='login_section_ul'>
-                    <li className='login_section_main'>
+                <ul className='login-section-ul'>
+                    <li className='login-section-main'>
                     <Form  onFinish={handleTotalForm}>
                         <div>
-                            <h1 className='Login_title'>Welcome Back!</h1>
+                            <h1 className='Login-title'>Welcome Back!</h1>
                             <div >
                                     <Form.Item
                                         style={{ width:"40%", flex: 1,}}
@@ -57,20 +57,20 @@ function Login(){
                                         <Input type={showPassword} placeholder="Password"/>
                                     </Form.Item>
                                 </div>
-                                <Checkbox className='show_password' onChange={ event => onChange(event) }>Show Password</Checkbox>
-                            <ul className='login_btn_ul'>
+                                <Checkbox className='show-password' onChange={ event => onChange(event) }>Show Password</Checkbox>
+                            <ul className='login-btn-ul'>
                                 <li>
-                                    <Button htmlType="submit" shape="round" className="login_submit_btn" >Submit</Button>
+                                    <Button htmlType="submit" shape="round" className="login-submit-btn" >Submit</Button>
                                 </li>
                                 <li>
-                                    <Button htmlType="submit" shape="round" className="login_cancle_btn">Cancle</Button>
+                                    <Button htmlType="submit" shape="round" className="login-cancle-btn">Cancle</Button>
                                 </li>
                             </ul>
                         </div>
                     </Form>
                     </li>
-                    <li className='login_pic_li'>
-                        <img className='login_pic' src={process.env.PUBLIC_URL + '/register.png'} />
+                    <li className='login-pic-li'>
+                        <img className='login-pic' src={process.env.PUBLIC_URL + '/register.png'} />
                     </li>
                 </ul>
             </div>

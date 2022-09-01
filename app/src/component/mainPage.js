@@ -9,11 +9,11 @@ function MaigPage(props){
     return(
         <div>
             <Header btnText="Log out" />
-            <div className='main_content'>
-                <button className='create_new'>Create new</button>
+            <div className='main-content'>
+                <button className='create-new'>Create new</button>
             </div>
-            <div className='post_list'>
-                <ul className='main_page_ul'>
+            <div className='post-list'>
+                <ul className='main-page-ul'>
                     <li>
                         <Post />
                     </li>
@@ -28,12 +28,12 @@ function MaigPage(props){
             <div className='profile'>
                 <ul>
                     <li>
-                        <img className='profile_pic' src={process.env.PUBLIC_URL + '/profile.png'} />
+                        <img className='profile-pic' src={process.env.PUBLIC_URL + '/profile.png'} />
                     </li>
-                    <li className='profile_name'>
+                    <li className='profile-name'>
                         name
                     </li>
-                    <li className='prfile_fav_res'>
+                    <li className='prfile-fav-res'>
                         ❤️ favourite resturant
                     </li>
                 </ul>

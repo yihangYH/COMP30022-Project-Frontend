@@ -1,63 +1,59 @@
-.login_section{
+.login-section{
     display: flex;
     position: absolute;
     top: 30%;
     width: 100%;
 }
 
-.login_section_ul{
+.login-section-ul{
     display: flex;
     list-style: none;
     width: 100%;
 }
-.login_pic_li{
+.login-pic-li{
     position: relative;
     width: 100%;
     z-index: -9999;
 }
 
-.login_pic{
+.login-pic{
     float: right;
     width: 40%;
     padding-right: 10%;
 }
 
-.prfile_pci_upload{
+.prfile-pci-upload{
     margin-left: 10%;
 }
-.Login_title{
+.Login-title{
     position: relative;
     padding-left: 5%;
 }
-.login_section_main{
+.login-section-main{
     position: absolute;
     width: 50%;
     top: 10%;
     left: 15%;
 }
 
-.login_pic{
-    float: right;
-    width: 40%;
-    padding-right: 10%;
-}
-.show_password{
+
+.show-password{
     margin-bottom: 2%;
 }
-.login_btn_ul{
+.login-btn-ul{
     display: flex;
     list-style: none;
     width: 50%;
     height: inherit;
 }
 
-.login_btn_ul li{
+.login-btn-ul li{
     margin-bottom: 2%;
     height: fit-content;
     width: inherit;
 }
 
-.login_submit_btn{
+.login-submit-btn{
     width: 65%;
     height: 10%;
     background-color: #FF7539;
@@ -67,7 +63,7 @@
     cursor: pointer;
 }
 
-.login_cancle_btn{
+.login-cancle-btn{
     width: 65%;
     height: 10%;
     background-color: #FF7539;

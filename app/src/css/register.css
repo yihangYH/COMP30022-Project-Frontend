@@ -1,45 +1,45 @@
-.register_section{
+.register-section{
     display: flex;
     position: absolute;
     top: 30%;
     width: 100%;
 }
 
-.register_section_ul{
+.register-section-ul{
     display: flex;
     list-style: none;
     width: 100%;
 }
 
-.prfile_pci_upload{
+.prfile-pci-upload{
     margin-left: 10%;
 }
 
-.register_section_main{
+.register-section-main{
     position: absolute;
     width: 50%;
     top: 10%;
     left: 15%;
 }
 
-.register_pic{
+.register-pic{
     float: right;
     width: 40%;
     padding-right: 10%;
 }
 
-.resgiste_btn_ul{
+.resgiste-btn-ul{
     list-style: none;
     width: 64%;
 }
 
-.resgiste_btn_ul li{
+.resgiste-btn-ul li{
     margin-bottom: 2%;
     height: fit-content;
     width: inherit;
 }
 
-.resgister_submit_btn{
+.resgister-submit-btn{
     width: 100%;
     height: 10%;
     background-color: #FF7539;
@@ -48,12 +48,12 @@
     font-size: large;
     cursor: pointer;
 }
-.register_pic_li{
+.register-pic-li{
     position: relative;
     width: 100%;
     z-index: -9999;
 }
-.resgister_cancle_btn{
+.resgister-cancle-btn{
     width: 100%;
     height: 10%;
     background-color: #FF7539;
@@ -64,7 +64,7 @@
 
 }
 
-.register_password{
+.register-password{
     margin-bottom: 2%;
 }
 

@@ -34,13 +34,13 @@ function Register(){
     return(
         <div>
         <Header btnText="Log in"/>
-        <div className='register_section'>
-            <ul className='register_section_ul'>
-                <li className='register_section_main'>
+        <div className='register-section'>
+            <ul className='register-section-ul'>
+                <li className='register-section-main'>
                 <Form  onFinish={handleTotalForm}>
                     <div>
                         <div >
-                            <div style={{flex:1}} id="totalForm" className='prfile_pci_upload'>
+                            <div style={{flex:1}} id="totalForm" className='prfile-pci-upload'>
                                 <Form.Item getValueFromEvent={(e)=>{ setTotalFormPic(true);return e.file}} name="pic" >
                                     <Upload alt="just one pic" listType="picture-card" showUploadList={{showPreviewIcon:false,showRemoveIcon:false}} onPreview={()=>{}}>{totalFormPic?null:"Profile Picture"}</Upload>
                                 </Form.Item>
@@ -82,20 +82,20 @@ function Register(){
                                     <Input placeholder="Favourite Restaurant"/>
                                 </Form.Item>
                             </div>
-                            <Checkbox className='register_password' onChange={ event => onChange(event) }>Show Password</Checkbox>
-                        <ul className='resgiste_btn_ul'>
+                            <Checkbox className='register-password' onChange={ event => onChange(event) }>Show Password</Checkbox>
+                        <ul className='resgiste-btn-ul'>
                             <li>
-                                <Button htmlType="submit" shape="round" className="resgister_submit_btn" >Submit</Button>
+                                <Button htmlType="submit" shape="round" className="resgister-submit-btn" >Submit</Button>
                             </li>
                             <li>
-                                <Button htmlType="submit" shape="round" className="resgister_cancle_btn">Cancle</Button>
+                                <Button htmlType="submit" shape="round" className="resgister-cancle-btn">Cancle</Button>
                             </li>
                         </ul>
                     </div>
                 </Form>
                 </li>
-                <li className='register_pic_li'>
-                    <img className='register_pic' src={process.env.PUBLIC_URL + '/register.png'} />
+                <li className='register-pic-li'>
+                    <img className='register-pic' src={process.env.PUBLIC_URL + '/register.png'} />
                 </li>
             </ul>
         </div>

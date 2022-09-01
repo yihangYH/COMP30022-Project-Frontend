@@ -42,7 +42,7 @@ export const Create = (props)=>{
         <div style={{flex:1}} id="mf">
             <Form
                 style={{ flex: 1 ,border:"1px solid #c8c8c8",padding:"10px" }}
-                onFinish={handleTotalForm} className="title_selection"
+                onFinish={handleTotalForm} className="title-selection"
             >
                 <div style={{display:"flex",marginBottom:"10px"}}>
                     <div style={{flex:3}} >
@@ -106,12 +106,12 @@ export const Create = (props)=>{
                     </div>}
                     
                 </div>
-                <Button htmlType="submit" shape="round" className="submit_btn">Submit</Button>
-                <Button htmlType="submit" shape="round" className="cancle_btn">Cancle</Button>
+                <Button htmlType="submit" shape="round" className="submit-btn">Submit</Button>
+                <Button htmlType="submit" shape="round" className="cancle-btn">Cancle</Button>
             </Form >
             {
                 forms.map((item,index)=>(
-                <Form key={item.subformid} style={{margin:"10% 0px",border:"1px solid #c8c8c8",padding:"10px"}} onFinish={(fileds)=>handleSubForm(fileds,index,item.subformid)} className="new_food_selection">
+                <Form key={item.subformid} style={{margin:"10% 0px",border:"1px solid #c8c8c8",padding:"10px"}} onFinish={(fileds)=>handleSubForm(fileds,index,item.subformid)} className="new-food-selection">
                     <div style={{display:"flex" }} >
                         <Form.Item  style={{flex:0}} name="pic" valuePropName="fileList" getValueFromEvent={(e)=>formFile(e,index)} rules={[
                                 {
