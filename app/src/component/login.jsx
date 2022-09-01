@@ -1,5 +1,6 @@
 import React , { useEffect } from 'react';
 import Header from './header';
+import Swal from 'sweetalert2'
 import "antd/dist/antd.min.css";
 import '../css/login.css';
 import { useState } from "react";
@@ -9,20 +10,25 @@ function Login(){
     useEffect(() => {
         document.title = 'Lgoin';
     });
-    const [forms, setForms] = useState([])
-    const [totalFormPic, setTotalFormPic] = useState(false);
+
     const [showPassword, setShowpassword] = useState("Password");
-    const headFormRequest = (data) => {
-        console.log(data,"handleTotalForm");
+    const formRequest = (data) => {
+        console.log(data.email === "demo@demo.com");
+        if(data.email === "demo@demo.com" && data.password === "12345678"){
+            
+            window.location.href = "/mainpage/1"
+        }else{
+            Swal.fire({
+                title: 'Error!',
+                text: 'Please enter correct email or password',
+                icon: 'error',
+                confirmButtonText: 'Retry'
+            })
+        }
+        
       };
     const handleTotalForm = (fileds)=>{
-        fileds.pics = forms.filter(item=>item.submit);
-        headFormRequest(fileds)
-    }
-    const handleSubForm = (fileds,formIndex,formId)=>{
-        const tmp = [...forms];
-        tmp[formIndex].submit = true;
-        setForms(tmp)
+        formRequest(fileds)
     }
     const onChange = (event)=>{
         if(showPassword === "Password"){
@@ -31,6 +37,10 @@ function Login(){
             setShowpassword("Password")
         }
     }
+    const cancel = ()=>{
+        window.location.href = "/"
+    }
+
     return(
         <div>
             <Header btnText="Log in"/>
@@ -44,7 +54,12 @@ function Login(){
                             <div >
                                     <Form.Item
                                         style={{ width:"40%", flex: 1,}}
-                                        name="email"
+                                        name="email" rules={[
+                                            {
+                                            required: true,
+                                            message: 'Please enter your email',
+                                            },
+                                        ]} 
 
                                     >
                                         <Input type="email" placeholder="Email"/>
@@ -52,7 +67,12 @@ function Login(){
 
                                     <Form.Item
                                         style={{width:"40%", flex: 1 }}
-                                        name="Password"
+                                        name="password" rules={[
+                                            {
+                                            required: true,
+                                            message: 'Please enter your password',
+                                            },
+                                        ]} 
                                     >
                                         <Input type={showPassword} placeholder="Password"/>
                                     </Form.Item>
@@ -60,10 +80,10 @@ function Login(){
                                 <Checkbox className='show-password' onChange={ event => onChange(event) }>Show Password</Checkbox>
                             <ul className='login-btn-ul'>
                                 <li>
-                                    <Button htmlType="submit" shape="round" className="login-submit-btn" >Submit</Button>
+                                    <Button htmlType="submit" shape="round" className="login-submit-btn">Submit</Button>
                                 </li>
                                 <li>
-                                    <Button htmlType="submit" shape="round" className="login-cancle-btn">Cancle</Button>
+                                    <Button htmlType="submit" shape="round" className="login-cancle-btn" onClick={cancel}>Cancle</Button>
                                 </li>
                             </ul>
                         </div>
