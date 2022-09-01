@@ -1,0 +1,71 @@
+.register-section{
+    display: flex;
+    position: absolute;
+    top: 30%;
+    width: 100%;
+}
+
+.register-section-ul{
+    display: flex;
+    list-style: none;
+    width: 100%;
+}
+
+.prfile-pci-upload{
+    margin-left: 10%;
+}
+
+.register-section-main{
+    position: absolute;
+    width: 50%;
+    top: 10%;
+    left: 15%;
+}
+
+.register-pic{
+    float: right;
+    width: 40%;
+    padding-right: 10%;
+}
+
+.resgiste-btn-ul{
+    list-style: none;
+    width: 64%;
+}
+
+.resgiste-btn-ul li{
+    margin-bottom: 2%;
+    height: fit-content;
+    width: inherit;
+}
+
+.resgister-submit-btn{
+    width: 100%;
+    height: 10%;
+    background-color: #FF7539;
+    border-radius: 20px;
+    color: white;
+    font-size: large;
+    cursor: pointer;
+}
+.register-pic-li{
+    position: relative;
+    width: 100%;
+    z-index: -9999;
+}
+.resgister-cancle-btn{
+    width: 100%;
+    height: 10%;
+    border-radius: 20px;
+    font-size: large;
+    cursor: pointer;
+
+}
+
+.register-password{
+    margin-bottom: 2%;
+}
+
+.ant-input {
+    border-radius: 20px;
+}

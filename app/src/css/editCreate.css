@@ -1,0 +1,66 @@
+#mf{
+    position: absolute;
+    top:25%;
+    width: 90%;
+    padding-left: 10%;
+}
+
+.title-selection{
+    border: none;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.food-selection{
+    margin-top: 10%;
+    padding: 1% 1% 1% 1%;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.submit-btn {
+    margin-top: 2%;
+}
+
+.cancle-btn{
+    margin-top: 2%;
+    float: right;
+}
+
+.new-food-selection{
+    margin-top: 10%;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+
+#mf .ant-input {
+    border: none;
+    font-weight: 700;
+}
+#mf .ant-input:focus{
+    box-shadow: 0 0 0 2px #ff74393e;
+}
+#mf .ant-btn{
+    background-color: #ff7539;  
+    color: white;
+}
+#mf .ant-btn:hover{
+    border-color: #ff7539;  
+}
+#mf .ant-btn-primary{
+    background-color: grey;  
+    border: none;
+}
+#mf .ant-form-item-label > label{
+    font-size: 24px
+}
+
+#mf .ant-row{
+    align-items: baseline;
+}
+#mf .ant-upload-list-picture .ant-upload-list-item, .ant-upload-list-picture-card .ant-upload-list-item {
+    padding: 0;
+}
+#mf .ant-upload-list-picture-card .ant-upload-list-item-info::before {
+    display: none;
+}

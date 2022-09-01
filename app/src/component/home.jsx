@@ -1,7 +1,6 @@
 import React , { useEffect } from 'react';
 import Header from './header';
 import '../css/home.css';
-import ReactDOM from "react-dom";
 
 function Home(){
     useEffect(() => {
