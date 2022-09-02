@@ -9,6 +9,7 @@ const subFormRequest = (data) => {
 };
 const headFormRequest = (data) => {
     console.log(data,"handleTotalForm");
+    window.location.href = "/mainpage/1"
 };
 
 const form = {
@@ -154,9 +155,7 @@ export const Edit = (url)=>{
     const backToMain = () => {
         window.location.href = "/mainpage/1"
     }
-    const submitClicked = () => {
-        window.location.href = "/mainpage/1"
-    }
+
     const handleSubFormCancel = (item,formIndex)=>{
         setForms(forms.filter(form=>form.subformId!==item.subformId));
         setBaseImg(baseImg.filter((_,index)=>index!==formIndex));
@@ -254,7 +253,7 @@ export const Edit = (url)=>{
                     </div>}
                 </div>  
                 <Button htmlType="button" shape="round" className="cancle-btn" onClick={backToMain}>Delete</Button>
-                <Button htmlType="submit" shape="round" className="submit-btn" onClick={submitClicked}>Submit</Button>
+                <Button htmlType="submit" shape="round" className="submit-btn">Submit</Button>
             </Form>}
             {
                 forms.map((item,index)=>(
