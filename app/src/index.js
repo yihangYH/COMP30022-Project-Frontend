@@ -6,6 +6,8 @@ import MainPage from './component/mainPage';
 import Login from './component/login';
 import CreatePost from './component/createPost';
 import Register from './component/register'
+import EditPost from './component/editPost'
+
 import {
     BrowserRouter as Router,
     Routes,
@@ -23,6 +25,7 @@ root.render(
             <Route exact path='/login' element={<Login />}></Route>
             <Route exact path='/createpost/:userId' element={< CreatePost />}></Route>
             <Route exact path='/register' element={< Register />}></Route>
+            <Route exact path='/editpost/:userId/:postId' element={< EditPost />}></Route>
         </Routes>
     </Router>
 //   <React.StrictMode>

@@ -28,6 +28,10 @@ export const Create = (props)=>{
     const backToMain = () => {
         window.location.href = "/mainpage/1"
     }
+
+    const submitClicked = () => {
+        window.location.href = "/mainpage/1"
+    }
     const handleTotalForm = (fileds)=>{
         fileds.pics = forms.filter(item=>item.submit);
         headFormRequest(fileds)
@@ -122,7 +126,9 @@ export const Create = (props)=>{
                                 message: 'Please add restaurant picture',
                                 },
                             ]} >
-                            <Upload alt="just one pic" listType="picture-card" showUploadList={{showPreviewIcon:false,showRemoveIcon:true}} onPreview={()=>{}}>{totalFormPic?null:"Add picture"}</Upload>
+                            <Upload alt="just one pic" listType="picture-card" 
+                            showUploadList={{showPreviewIcon:false,showRemoveIcon:true}} 
+                            onPreview={()=>{}}>{totalFormPic?null:"Add picture"}</Upload>
                         </Form.Item>
 
                     </div>
@@ -140,17 +146,20 @@ export const Create = (props)=>{
                     </Form.Item>
                 <div style={{display:"flex",alignItems:"flex-start"}}>
                     <Form.Item name="pics" >
-                        <Upload fileList={baseImg} listType="picture-card" className="upload-list-inline" showUploadList={{showPreviewIcon:false,showRemoveIcon:false}} />
+                        <Upload fileList={baseImg} listType="picture-card" className="upload-list-inline" 
+                        showUploadList={{showPreviewIcon:false,showRemoveIcon:false}} />
                         
                     </Form.Item>
-                    {baseImg.length<6&&forms.length<6&&<div style={{aspectRatio:1,width:"100px",display:'flex',justifyContent:"center",alignItems:"center",border:"2px solid grey", cursor:"pointer"}} onClick={()=>setForms([...forms,{subformid:"form"+Math.random().toString(36).slice(2)}])}>
+                    {baseImg.length<6&&forms.length<6&&
+                    <div style={{aspectRatio:1,width:"100px",display:'flex',justifyContent:"center",alignItems:"center",border:"2px solid grey", 
+                    cursor:"pointer"}} onClick={()=>setForms([...forms,{subformid:"form"+Math.random().toString(36).slice(2)}])}>
                         
                         <PlusOutlined />
                     </div>}
                     
                 </div>
-                <Button htmlType="submit" shape="round" className="submit-btn">Submit</Button>
                 <Button htmlType="button" shape="round" className="cancle-btn" onClick={backToMain}>Cancle</Button>
+                <Button htmlType="submit" shape="round" className="submit-btn" onClick={submitClicked}>Submit</Button>
             </Form >
             {
                 forms.map((item,index)=>(
@@ -193,13 +202,14 @@ export const Create = (props)=>{
                         name="foodComment" rules={[
                             {
                             required: true,
-                            message: 'Please add food name',
+                            message: 'Please add food comment',
                             },
                         ]} 
                     >
                         <Input.TextArea placeholder="Comment" disabled={item.submit} autoSize={{ minRows: 3, maxRows: 5 }}/>
                     </Form.Item>
                     {item.submit?null:<div>
+                       
                         <Button onClick={()=>setForms(forms.filter(form=>form.subformid!==item.subformid))} shape="round" type="primary" style={{marginRight:"10px"}}>Cancel</Button>
                         <Button htmlType="submit" shape="round" style={{float:"right"}}>Save</Button>
                     </div>
