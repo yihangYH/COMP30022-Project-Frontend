@@ -11,52 +11,79 @@ const headFormRequest = (data) => {
     console.log(data,"handleTotalForm");
   };
 
-export const Edit = (props)=>{
+export const Edit = (url)=>{
     // total form data from input data
     const [total, setTotal] = useState(null);
-    console.log(props.test)
-    const [forms, setForms] = useState([])
-    const [baseImg, setBaseImg] = useState([]);
-    const [totalFormPic, setTotalFormPic] = useState(false);
-    const formFile = (e,formIndex) => {
-        let data = e.fileList;
-        data[0].status='done';
-        const tmp = [...forms];
-        tmp[formIndex].uploadDone = true;
-        setForms(tmp)
-        return e?.fileList;
-    };
+
     const backToMain = () => {
         window.location.href = "/mainpage/1"
     }
+    const [forms, setForms] = useState([])
+
+    // picture at food section
+    const [baseImg, setBaseImg] = useState([]);
+
+    // picture at restaurant section
+    const [totalFormPic, setTotalFormPic] = useState([]);
+
+    
+      const onChange= ({ fileList: newFileList }) => {
+        setTotalFormPic(newFileList);
+      };
+      useEffect(() => {
+        const getDataPromise = fetch(url,{});
+        getDataPromise.then(data=>{
+            setForms(data);
+            setTotal(form)
+            const pic = form.pic;
+            const pics = form.pics;
+
+            setBaseImg(pic);
+            setTotalFormPic(pics)
+        })
+
+        setTimeout(()=>{
+            setForms(data);
+            setTotal(form);
+            const pic = form.pic;
+            const pics = form.pics;
+            setBaseImg(pics);
+            setTotalFormPic(pic)
+        },1000)
+    }, [])
+    
     const handleTotalForm = (fileds)=>{
-        fileds.pics = forms.filter(item=>item.submit);
+        console.log(fileds)
+        fileds.pics = baseImg;
+        fileds.pic = [{url:fileds.pic[0].thumbUrl,uid:fileds.pic[0].uid}]
         headFormRequest(fileds)
     }
-    const handleSubForm = (fileds,formIndex,formId)=>{
-        setBaseImg([...baseImg,{url:fileds?.pic[0].thumbUrl}]);
-        const tmp = [...forms];
-        tmp[formIndex].submit = true;
-        subFormRequest({...fileds,pic:fileds.pic[0].thumbUrl,subformId:formId})
-        setForms(tmp)
-    }
 
-    const formFileEventHandle = (e,formIndex) => {
-        if(e.fileList.length>0){
-            let data = e.fileList;
-            data[0].status='done';
-            const tmp = [...forms];
-            tmp[formIndex].uploadDone = true;
-            setForms(tmp)
-            return e?.fileList;
+    const handleSubForm = (fileds,formIndex,formId)=>{
+        console.log(formIndex,baseImg.length-1);
+        if(formIndex<=baseImg.length-1){
+            console.log('leng',fileds);
+            const tmp = [...baseImg];
+            tmp[formIndex].thumbUrl = fileds?.pic.file?.thumbUrl||fileds.pic[0].thumbUrl;
+            tmp[formIndex].submit = true
+            setBaseImg(tmp);//更新total图
+
+            setForms(forms.map((item,index)=>{if(formIndex===index){item.submit=true}; return item}))
+            return 
         }
-        // remove image from sun-form
-        const tmp = [...forms];
-        tmp[formIndex].uploadDone = false;
-        setForms(tmp)
-        return e?.fileList;
-      };
-    const [firstName, setFirstName] = useState('Default value');
+        console.log(fileds,'ds');
+        if(fileds?.pic.file?.thumbUrl){
+            setBaseImg([...baseImg,{url:fileds?.pic.file.thumbUrl}]);
+            const tmp = [...forms];
+            tmp[formIndex].submit = true;
+            subFormRequest({...fileds,pic:{url:fileds.pic.file.thumbUrl,uid:fileds.pic.file.uid},subformId:formId})
+            setForms(tmp)
+        }
+    }
+    const handleSubFormCancel = (item,formIndex)=>{
+        setForms(forms.filter(form=>form.subformId!==item.subformId));
+        setBaseImg(baseImg.filter((_,index)=>index!==formIndex));
+    }
     return (      
         <div style={{flex:1}} id="mf">
             <Form
