@@ -4,7 +4,7 @@ import { Edit } from './edit';
 
 function EditPost(){
     useEffect(() => {
-        document.title = 'Create';
+        document.title = 'Edit';
     });
 
  

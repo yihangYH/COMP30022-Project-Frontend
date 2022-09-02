@@ -9,12 +9,15 @@ function Comment(props){
     const backToMain = () => {
         window.location.href = '/mainpage/1';
     }
+    const editClicked = () => {
+        window.location.href = '/editpost/1/1';
+    }
     return(
         <div>
             <Header btnText="Log out" />
             <div className='button'>
                 <button className='back' onClick={backToMain}>Back</button>
-                <button className='edit'>Edit</button>
+                <button className='edit' onClick={editClicked}>Edit</button>
             </div>
             <div className='detail'>
                 <ul className='detail-list'>

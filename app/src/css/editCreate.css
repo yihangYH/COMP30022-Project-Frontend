@@ -20,11 +20,12 @@
 
 .submit-btn {
     margin-top: 2%;
+    float: right;
 }
 
 .cancle-btn{
     margin-top: 2%;
-    float: right;
+    
 }
 
 .new-food-selection{
