@@ -88,7 +88,7 @@ function Login(){
                                     <Button htmlType="submit" shape="round" className="login-submit-btn">Login</Button>
                                 </li>
                                 <li>
-                                    <Button htmlType="button" shape="round" className="login-cancle-btn" onClick={cancel}>Cancle</Button>
+                                    <Button htmlType="button" shape="round" className="login-cancle-btn" onClick={cancel}>Cancel</Button>
                                 </li>
                             </ul>
                             <Button htmlType="button" shape="round" className="register-btn" onClick={registerClicked}>Register</Button>
