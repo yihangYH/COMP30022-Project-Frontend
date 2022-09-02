@@ -9,6 +9,7 @@ const subFormRequest = (data) => {
   };
 const headFormRequest = (data) => {
     console.log(data,"handleTotalForm");
+    window.location.href = "/mainpage/1"
   };
   
 
@@ -29,9 +30,6 @@ export const Create = (props)=>{
         window.location.href = "/mainpage/1"
     }
 
-    const submitClicked = () => {
-        window.location.href = "/mainpage/1"
-    }
     const handleTotalForm = (fileds)=>{
         fileds.pics = forms.filter(item=>item.submit);
         headFormRequest(fileds)
@@ -42,6 +40,7 @@ export const Create = (props)=>{
         tmp[formIndex].submit = true;
         subFormRequest({...fileds,pic:fileds.pic[0].thumbUrl,subformId:formId})
         setForms(tmp)
+        console.log(forms)
     }
 
     const formFileEventHandle = (e,formIndex) => {
@@ -158,8 +157,8 @@ export const Create = (props)=>{
                     </div>}
                     
                 </div>
-                <Button htmlType="button" shape="round" className="cancle-btn" onClick={backToMain}>Cancel</Button>
-                <Button htmlType="submit" shape="round" className="submit-btn" onClick={submitClicked}>Submit</Button>
+                <Button htmlType="button" shape="round" className="cancle-btn" onClick={backToMain}>Cancle</Button>
+                <Button htmlType="submit" shape="round" className="submit-btn">Submit</Button>
             </Form >
             {
                 forms.map((item,index)=>(
