@@ -158,7 +158,7 @@ export const Create = (props)=>{
                     </div>}
                     
                 </div>
-                <Button htmlType="button" shape="round" className="cancle-btn" onClick={backToMain}>Cancle</Button>
+                <Button htmlType="button" shape="round" className="cancle-btn" onClick={backToMain}>Cancel</Button>
                 <Button htmlType="submit" shape="round" className="submit-btn" onClick={submitClicked}>Submit</Button>
             </Form >
             {

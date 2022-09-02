@@ -130,7 +130,7 @@ function Register(){
                                 <Button htmlType="submit" shape="round" className="resgister-submit-btn" >Register</Button>
                             </li>
                             <li>
-                                <Button htmlType="button" shape="round" className="resgister-cancle-btn" onClick={backToLogin}>Cancle</Button>
+                                <Button htmlType="button" shape="round" className="resgister-cancle-btn" onClick={backToLogin}>Cancel</Button>
                             </li>
                         </ul>
                     </div>
