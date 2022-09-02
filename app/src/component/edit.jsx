@@ -12,6 +12,8 @@ const headFormRequest = (data) => {
   };
 
 export const Edit = (props)=>{
+    // total form data from input data
+    const [total, setTotal] = useState(null);
     console.log(props.test)
     const [forms, setForms] = useState([])
     const [baseImg, setBaseImg] = useState([]);
@@ -59,7 +61,7 @@ export const Edit = (props)=>{
         <div style={{flex:1}} id="mf">
             <Form
                 style={{ flex: 1 ,border:"1px solid #c8c8c8",padding:"10px" }}
-                onFinish={handleTotalForm} className="title-selection"
+                onFinish={handleTotalForm} initialValues={total} className="title-selection"
             >
                 <div style={{display:"flex",marginBottom:"10px"}}>
                     <div style={{flex:3}} >
@@ -114,14 +116,14 @@ export const Edit = (props)=>{
                             <Input placeholder="Restaurant Location"/>
                         </Form.Item>
                     </div>
-                    <div style={{flex:1,aspectRatio:2/1}} id="totalForm">
-                        <Form.Item getValueFromEvent={(e)=>{ setTotalFormPic(e.fileList.length>0?true:false);return e.file}} name="pic" rules={[
+                    <div style={{flex:1,aspectRatio:2/1}} id="totalFormRightPic">
+                        <Form.Item getValueFromEvent={(({fileList})=>fileList.map(img=>img))} name="pic" rules={[
                                 {
                                 required: true,
                                 message: 'Please add restaurant picture',
                                 },
                             ]} >
-                            <Upload alt="just one pic" listType="picture-card" showUploadList={{showPreviewIcon:false,showRemoveIcon:true}} onPreview={()=>{}}>{totalFormPic?null:"Add picture"}</Upload>
+                            <Upload fileList={totalFormPic} onChange={onChange} alt="just one pic" listType="picture-card" showUploadList={{showPreviewIcon:false,showRemoveIcon:true}} onPreview={()=>{}}>{totalFormPic.length>0?null:"Add picture"}</Upload>
                         </Form.Item>
 
                     </div>
@@ -149,20 +151,20 @@ export const Edit = (props)=>{
                     
                 </div>
                 <Button htmlType="submit" shape="round" className="submit-btn">Submit</Button>
-                <Button htmlType="button" shape="round" className="cancle-btn" onClick={backToMain}>Cancle</Button>
+                <Button htmlType="button" shape="round" className="cancle-btn" onClick={backToMain}>Delete</Button>
             </Form >
             {
                 forms.map((item,index)=>(
-                <Form key={item.subformid} style={{margin:"10% 0px",border:"1px solid #c8c8c8",padding:"10px"}} onFinish={(fileds)=>handleSubForm(fileds,index,item.subformid)} className="new-food-selection">
+                <Form key={item.subformid} style={{margin:"10% 0px",border:"1px solid #c8c8c8",padding:"10px"}} onFinish={(fileds)=>handleSubForm(fileds,index,item.subformid)} initialValues={item} className="new-food-selection">
                     <div style={{display:"flex" }} >
-                        <Form.Item  style={{flex:0}} name="pic" valuePropName="fileList" getValueFromEvent={(e)=>formFileEventHandle(e,index)} rules={[
+                        <Form.Item  style={{flex:0}} name="pic" rules={[
                                 {
                                 required: true,
                                 message: 'Please add food Picture',
                                 },
                             ]} >
-                            <Upload disabled={item.submit} listType="picture-card" showUploadList={{showPreviewIcon:false,showRemoveIcon:true}}>
-                                {item?.uploadDone?null:"Food Picture"}
+                            <Upload fileList={item.pic} onChange={(e)=>setForms(forms.map((x,i)=>{if(i===index){x.pic=e.fileList};return x}))} disabled={item.submit} listType="picture-card" showUploadList={{showPreviewIcon:false,showRemoveIcon:true}}>
+                                {item?.pic?.length>0?null:"Food Picture"}
                             </Upload>
                         </Form.Item>
                         
@@ -199,7 +201,7 @@ export const Edit = (props)=>{
                         <Input.TextArea placeholder="Comment" disabled={item.submit} autoSize={{ minRows: 3, maxRows: 5 }}/>
                     </Form.Item>
                     {item.submit?null:<div>
-                        <Button onClick={()=>setForms(forms.filter(form=>form.subformid!==item.subformid))} shape="round" type="primary" style={{marginRight:"10px"}}>Cancel</Button>
+                        <Button onClick={()=>handleSubFormCancel(item,index)} shape="round" type="primary" style={{marginRight:"10px"}}>Cancel</Button>
                         <Button htmlType="submit" shape="round" style={{float:"right"}}>Save</Button>
                     </div>
                     
