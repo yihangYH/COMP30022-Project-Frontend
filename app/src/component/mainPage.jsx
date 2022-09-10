@@ -39,7 +39,7 @@ function MaigPage(props){
                 <div className='profile'>
                     <ul>
                         <li>
-                            <img className='profile-pic' src={process.env.PUBLIC_URL + '/profile.png'} />
+                            <img className='profile-pic' src={data.profileImageID} />
                         </li>
                         <li className='profile-name'>
                             {data.username}
