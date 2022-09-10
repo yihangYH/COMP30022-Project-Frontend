@@ -9,15 +9,13 @@ function Post(props){
         <div>
             <div className='post-content'>
                 <ul className='content-pic'>
-                    <li>
+                    <li className='content-text'>
                         <div className='post-title'>
                             <ul className='list'>
-                                <li onClick={handleClick} style={{cursor:"pointer"}}><p>Where to grow your business as a photographer: site or social media?</p></li>
+                                <li onClick={handleClick} style={{cursor:"pointer"}} className="li-title"><p>Where to grow your business as a photographer: site or social media?</p></li>
                                 <li className='li-rating'>
                                     Rating:
-                                </li>
-                                <li className='li-rating-value'>
-                                    3.8
+                                    <span className='li-rating-value'>3.8</span>
                                 </li>
                             </ul>
                         </div>

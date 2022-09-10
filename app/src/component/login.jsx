@@ -12,19 +12,25 @@ function Login(){
     });
 
     const [showPassword, setShowpassword] = useState("Password");
-    const formRequest = (data) => {
-        console.log(data.email === "demo@demo.com");
-        if(data.email === "demo@demo.com" && data.password === "12345678"){
-            
-            window.location.href = "/mainpage/1"
-        }else{
-            Swal.fire({
-                title: 'Error!',
-                text: 'Please enter correct email or password',
-                icon: 'error',
-                confirmButtonText: 'Retry'
-            })
+    const formRequest = async(data) => {
+        const loginRequest = {
+            "email":data.email,
+            "password":data.password
         }
+        console.log(loginRequest,"loginRequest");
+        const res = await fetch('http://localhost:8080/login', {
+            method: 'POST',
+            body: JSON.stringify(loginRequest),
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+        })
+        const response = await res.json();
+        const url = "/mainpage/"+response.id;
+        if(response.status){
+            window.location.href = url
+        }      
         
     };
 
@@ -43,7 +49,8 @@ function Login(){
         }
     }
     const cancel = ()=>{
-        window.location.href = "/"
+        window.location.href = "/"        
+        
     }
 
     return(
