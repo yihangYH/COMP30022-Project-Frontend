@@ -13,7 +13,8 @@ function Register(){
     const [forms, setForms] = useState([])
     const [totalFormPic, setTotalFormPic] = useState(false);
     const [showPassword, setShowpassword] = useState("Password");
-    const headFormRequest = (data) => {
+    const headFormRequest = async (data) => {
+        console.log(data,"data");
         if(data.password != data.confirmPassword){
             Swal.fire({
                 title: 'Error!',
@@ -22,12 +23,29 @@ function Register(){
                 confirmButtonText: 'Retry'
             })
         }else{
+            const registerRequest = {
+                "email":data.email,
+                "password":data.password,
+                "username":data.username,
+                "favouriteRestaurant":data.favouriteRestaurant,
+                "image":data.pic.thumbUrl
+            }
+            const res = await fetch('http://localhost:8080/register', {
+                method: 'POST',
+                body: JSON.stringify(registerRequest),
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+            })
+            const response = await res.json();
+            console.log(response,"response");
+            console.log(registerRequest,"registerRequest");
             window.location.href = "/login"
         }
         // console.log(data.pic.thumbUrl,"handleTotalForm");
     };
     const handleTotalForm = (fileds)=>{
-        fileds.pics = forms.filter(item=>item.submit);
         headFormRequest(fileds)
     }
 
