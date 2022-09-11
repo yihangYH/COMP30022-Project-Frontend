@@ -1,9 +1,13 @@
 import React from 'react';
 import '../css/post.css'
+import { useParams } from "react-router-dom";
 function Post(props){
-
+    const { userId } = useParams()
     const handleClick = () => {
-        window.location.href = `/comment/1/1`;
+        
+        window.location.href = `/comment/${userId}/${props.data.id}`;
+        const test = `/comment/${userId}/${props.data.id}`
+        console.log(test)
     }
     return(
         <div>
