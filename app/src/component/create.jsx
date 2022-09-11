@@ -3,20 +3,60 @@ import "antd/dist/antd.min.css";
 import "../css/editCreate.css";
 import { useState } from "react";
 import { PlusOutlined } from '@ant-design/icons';
+import { useParams } from "react-router-dom";
 
-const subFormRequest = (data) => {
-    console.log(data,"subFormData");
-  };
-const headFormRequest = (data) => {
-    console.log(data,"handleTotalForm");
-    window.location.href = "/mainpage/1"
+const subFormRequest = async (foodData) => {
+    console.log(foodData,"subFormData");
+    const data = {
+        "name": foodData.header,
+        "rate": foodData.rate,
+        "comment": foodData.foodComment,
+        "foodImage": foodData.pic,
+    }
+    console.log(data,"data");
+    const res = await fetch('http://localhost:8080/creatFoodPost', {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+    })
+    const response = await res.json();
+    console.log(response,"response");
+    return response.id;
+};
+const headFormRequest = async (data) => {
+    const postData = {
+        "name": data.restaurantName,
+        "rate": data.rating,
+        "comment": data.comment,
+        "image": data.pic.thumbUrl,
+        "title": data.title,
+        "foodPostsId": data.foodPostIDs,
+        "location": data.restaurantLocation,
+    }
+    console.log(postData,"postData");
+    const res = await fetch('http://localhost:8080/create/'+data.userId, {
+        method: 'POST',
+        body: JSON.stringify(postData),
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+    })
+    const response = await res.json();
+    console.log(response,"response");
+    // window.location.href = "/mainpage/1"
   };
   
 
 export const Create = (props)=>{
     console.log(props.test)
+    const { userId } = useParams()
     const [forms, setForms] = useState([])
     const [baseImg, setBaseImg] = useState([]);
+    const [foodPostID, setFoodPostID] = useState([]);
     const [totalFormPic, setTotalFormPic] = useState(false);
     const formFile = (e,formIndex) => {
         let data = e.fileList;
@@ -27,20 +67,31 @@ export const Create = (props)=>{
         return e?.fileList;
     };
     const backToMain = () => {
-        window.location.href = "/mainpage/1"
+        // window.location.href = "/mainpage/1"
+        Promise.all(foodPostID).then((values) => {
+            console.log(values,"values");
+        })
     }
 
     const handleTotalForm = (fileds)=>{
         fileds.pics = forms.filter(item=>item.submit);
-        headFormRequest(fileds)
+        Promise.allSettled(foodPostID).then(value=>{
+            const foodPostIDs = value.map(item=>item.value);
+            fileds.foodPostIDs = foodPostIDs;
+            fileds.userId = userId;
+            headFormRequest(fileds)
+        }) 
+
+        // headFormRequest(fileds)
     }
     const handleSubForm = (fileds,formIndex,formId)=>{
         setBaseImg([...baseImg,{url:fileds?.pic[0].thumbUrl}]);
         const tmp = [...forms];
         tmp[formIndex].submit = true;
-        subFormRequest({...fileds,pic:fileds.pic[0].thumbUrl,subformId:formId})
+        const id = subFormRequest({...fileds,pic:fileds.pic[0].thumbUrl,subformId:formId})
+        setFoodPostID([...foodPostID, id])
         setForms(tmp)
-        console.log(forms)
+        // console.log(forms)
     }
 
     const formFileEventHandle = (e,formIndex) => {
