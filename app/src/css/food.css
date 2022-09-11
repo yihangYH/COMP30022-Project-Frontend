@@ -28,6 +28,7 @@
 .food-description ul{
     list-style: none;
     padding-top: 2%;
+    width: 100%;
 }
 
 .food-name{
