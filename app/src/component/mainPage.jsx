@@ -11,6 +11,9 @@ function MaigPage(props){
 
     const[data,setData] = useState();
 
+    const create = () => {
+        window.location.href = '/createpost/'+userId;
+    }
 
     useState(async ()=>{
         await fetch('http://localhost:8080/getuser/'+userId)
@@ -23,7 +26,7 @@ function MaigPage(props){
             <div>
                 <Header btnText="Log out" color="black" backgroundColor="white" border="2px solid black"/>
                 <div className='main-content'>
-                    <button className='create-new' onClick={event =>  window.location.href='/createpost/1'}>Create new</button>
+                    <button className='create-new' onClick={create}>Create new</button>
                 </div>
                 <div className='post-list'>
                     <ul className='main-page-ul'>
