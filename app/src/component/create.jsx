@@ -5,52 +5,14 @@ import { useState } from "react";
 import { PlusOutlined } from '@ant-design/icons';
 import { useParams } from "react-router-dom";
 
-const subFormRequest = async (foodData) => {
-    console.log(foodData,"subFormData");
+import PacmanLoader from "react-spinners/PacmanLoader";
 
-    const data = {
-        "name": foodData.header,
-        "rate": foodData.rate,
-        "comment": foodData.comment,
-        "foodImage": foodData.pic,
-    }
-
-    const res = await fetch('http://localhost:8080/creatFoodPost', {
-        method: 'POST',
-        body: JSON.stringify(data),
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-        },
-    })
-    const response = await res.json();
-    console.log(response,"response");
-    // window.location.href = "/mainpage/"+userId
-    return response.id;
+const override = {
+    display: "block",
+    margin: "0 auto",
+    top: "50%",
 };
-const headFormRequest = async (data) => {
-    const postData = {
-        "name": data.restaurantName,
-        "rate": data.rating,
-        "comment": data.comment,
-        "image": data.pic.thumbUrl,
-        "title": data.title,
-        "foodPostsId": data.foodPostIDs,
-        "location": data.restaurantLocation,
-    }
-    console.log(postData,"postData");
-    const res = await fetch('http://localhost:8080/create/'+data.userId, {
-        method: 'POST',
-        body: JSON.stringify(postData),
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-        },
-    })
-    const response = await res.json();
-    console.log(response,"response");
-    window.location.href = "/mainpage/" + data.userId;
-  };
+
   
 
 export const Create = (props)=>{
@@ -60,22 +22,83 @@ export const Create = (props)=>{
     const [baseImg, setBaseImg] = useState([]);
     const [foodPostID, setFoodPostID] = useState([]);
     const [totalFormPic, setTotalFormPic] = useState(false);
-    const formFile = (e,formIndex) => {
-        let data = e.fileList;
-        data[0].status='done';
-        const tmp = [...forms];
-        tmp[formIndex].uploadDone = true;
-        setForms(tmp)
-        return e?.fileList;
-    };
-    const backToMain = () => {
-        // window.location.href = "/mainpage/1"
-        Promise.all(foodPostID).then((values) => {
-            console.log(values,"values");
+    let [loading, setLoading] = useState(false);
+    let [color, setColor] = useState("#ffffff");
+    let[cssStyle, setCssStyle] = useState();
+    const style = {
+        zIndex:"9999",
+        display:"grid", 
+        width:"100%" ,
+        height:"100%",
+        position:"absolute", 
+        backgroundColor:"rgba(0,0,0,-1)"
+    }
+    // const formFile = (e,formIndex) => {
+    //     let data = e.fileList;
+    //     data[0].status='done';
+    //     const tmp = [...forms];
+    //     tmp[formIndex].uploadDone = true;
+    //     setForms(tmp)
+    //     return e?.fileList;
+    // };
+    const subFormRequest = async (foodData) => {
+        console.log(foodData,"subFormData");
+        const data = {
+            "name": foodData.header,
+            "rate": foodData.rate,
+            "comment": foodData.comment,
+            "foodImage": foodData.pic,
+        }
+    
+        const res = await fetch('http://localhost:8080/creatFoodPost', {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
         })
+        const response = await res.json();
+        console.log(response,"response");
+        if(response.status == "true"){
+            setCssStyle();
+            setLoading(false);
+        }
+        return response.id;
+    };
+    const headFormRequest = async (data) => {
+        const postData = {
+            "name": data.restaurantName,
+            "rate": data.rating,
+            "comment": data.comment,
+            "image": data.pic.thumbUrl,
+            "title": data.title,
+            "foodPostsId": data.foodPostIDs,
+            "location": data.restaurantLocation,
+        }
+        console.log(postData,"postData");
+        const res = await fetch('http://localhost:8080/create/'+data.userId, {
+            method: 'POST',
+            body: JSON.stringify(postData),
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+        })
+        const response = await res.json();
+        console.log(response,"response");
+        window.location.href = "/mainpage/" + data.userId;
+      };
+    const backToMain = () => {
+        window.location.href = "/mainpage/" + userId;
+        // Promise.all(foodPostID).then((values) => {
+        //     console.log(values,"values");
+        // })
     }
 
     const handleTotalForm = (fileds)=>{
+        setLoading(true);
+        setCssStyle(style);
         fileds.pics = forms.filter(item=>item.submit);
         Promise.allSettled(foodPostID).then(value=>{
             const foodPostIDs = value.map(item=>item.value);
@@ -86,6 +109,8 @@ export const Create = (props)=>{
 
     }
     const handleSubForm = (fileds,formIndex,formId)=>{
+        setLoading(true);
+        setCssStyle(style);
         setBaseImg([...baseImg,{url:fileds?.pic[0].thumbUrl}]);
         const tmp = [...forms];
         tmp[formIndex].submit = true;
@@ -113,6 +138,9 @@ export const Create = (props)=>{
     const [firstName, setFirstName] = useState('Default value');
     return (      
         <div style={{flex:1}} id="mf">
+            <div style={cssStyle}>            
+                    <PacmanLoader loading={loading} color="#FF7539" cssOverride={override} size={50} />
+            </div>
             <Form
                 style={{ flex: 1 ,border:"1px solid #c8c8c8",padding:"10px" }}
                 onFinish={handleTotalForm} className="title-selection"
