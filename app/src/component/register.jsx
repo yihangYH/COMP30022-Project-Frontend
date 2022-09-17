@@ -5,6 +5,13 @@ import Swal from 'sweetalert2'
 import '../css/register.css';
 import { useState } from "react";
 import { Button, Checkbox, Form, Input, Upload } from "antd"
+import PacmanLoader from "react-spinners/PacmanLoader";
+
+const override = {
+    display: "block",
+    margin: "0 auto",
+    top: "50%",
+};
 
 function Register(){
     useEffect(() => {
@@ -13,16 +20,32 @@ function Register(){
     const [forms, setForms] = useState([])
     const [totalFormPic, setTotalFormPic] = useState(false);
     const [showPassword, setShowpassword] = useState("Password");
+    let [loading, setLoading] = useState(false);
+    let [color, setColor] = useState("#ffffff");
+    let[cssStyle, setCssStyle] = useState();
+    const style = {
+        zIndex:"9999",
+        display:"grid", 
+        width:"100%" ,
+        height:"100%",
+        position:"absolute", 
+        backgroundColor:"rgba(0,0,0,-1)"
+    }
     const headFormRequest = async (data) => {
-        console.log(data,"data");
+        setLoading(true);
+        setCssStyle(style);
+        // console.log(data,"data");
         if(data.password != data.confirmPassword){
+            setLoading(false);
+            setCssStyle();
             Swal.fire({
                 title: 'Error!',
-                text: 'Please enter password and confirm password not match',
+                text: 'password and confirm password not match',
                 icon: 'error',
                 confirmButtonText: 'Retry'
             })
         }else{
+            
             const registerRequest = {
                 "email":data.email,
                 "password":data.password,
@@ -43,7 +66,7 @@ function Register(){
             console.log(registerRequest,"registerRequest");
             window.location.href = "/login"
         }
-        // console.log(data.pic.thumbUrl,"handleTotalForm");
+        console.log(data.pic.thumbUrl,"handleTotalForm");
     };
     const handleTotalForm = (fileds)=>{
         headFormRequest(fileds)
@@ -66,6 +89,9 @@ function Register(){
         <div className='register-section'>
             <ul className='register-section-ul'>
                 <li className='register-section-main'>
+                <div style={cssStyle}>            
+                    <PacmanLoader loading={loading} color="#FF7539" cssOverride={override} size={50} />
+                </div>
                 <Form  onFinish={handleTotalForm}>
                     <div>
                         <div >
