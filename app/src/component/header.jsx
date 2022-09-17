@@ -8,7 +8,7 @@ function Header(props){
             </div>
             <div>
                 <button id = "btn" className='login' onClick={event =>  window.location.href='/login'}
-                    style = {{display: `${props.display}`, color:`${props.color}`, backgroundColor:`${props.backgroundColor}`, border:`${props.border}`}} >{props.btnText}</button>
+                    style = {{zIndex:"9999",display: `${props.display}`, color:`${props.color}`, backgroundColor:`${props.backgroundColor}`, border:`${props.border}`}} >{props.btnText}</button>
             </div>
         </div>
 

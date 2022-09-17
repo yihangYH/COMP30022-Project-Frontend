@@ -1,17 +1,29 @@
 import React from 'react';
 import '../css/post.css'
 import { useParams } from "react-router-dom";
+
 function Post(props){
     const { userId } = useParams()
+    console.log(props)
+    const style = {
+        zIndex:"9999",
+        display:"grid", 
+        width:"100%" ,
+        height:"100%",
+        position:"absolute", 
+        backgroundColor:"rgba(0,0,0,-1)"
+    }
     const handleClick = () => {
-        
+        // setCssStyle(style);
+        console.log("clicked");
+        props.setLoading(true);
+        props.setCssStyle(style);
         window.location.href = `/comment/${userId}/${props.data.id}`;
-        const test = `/comment/${userId}/${props.data.id}`
-        console.log(test)
     }
     return(
         <div>
             <div className='post-content'>
+
                 <ul className='content-pic'>
                     <li className='content-text'>
                         <div className='post-title'>
