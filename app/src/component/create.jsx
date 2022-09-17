@@ -11,7 +11,7 @@ const subFormRequest = async (foodData) => {
     const data = {
         "name": foodData.header,
         "rate": foodData.rate,
-        "comment": foodData.foodComment,
+        "comment": foodData.comment,
         "foodImage": foodData.pic,
     }
 
