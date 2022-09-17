@@ -27,10 +27,18 @@ function Login(){
             },
         })
         const response = await res.json();
+        console.log(response,"response");
         const url = "/mainpage/"+response.id;
-        if(response.status){
+        if(response.status == "true"){
             window.location.href = url
-        }      
+        }else{
+            Swal.fire({
+                title: 'Error!',
+                text: 'Please Check The Password And Email',
+                icon: 'error',
+                confirmButtonText: 'Retry'
+            })
+        }   
         
     };
 
