@@ -5,14 +5,6 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { PlusOutlined } from '@ant-design/icons';
 
-const subFormRequest = (data) => {
-    console.log(data,"subFormData");
-};
-const headFormRequest = (data) => {
-    console.log(data,"handleTotalForm");
-    window.location.href = "/mainpage/1"
-};
-
 const form = {
 
 }
@@ -27,12 +19,12 @@ export const Edit = (url)=>{
  const [forms, setForms] = useState([])
  const { postId } = useParams()
  const { userId } = useParams()
-
+ const [foodPostID, setFoodPostID] = useState([]);
 
  const [baseImg, setBaseImg] = useState([]);
 
  const [totalFormPic, setTotalFormPic] = useState([]);
-    // const [fileList, setFileList] = useState();
+    const [fileList, setFileList] = useState();
  
     const onChange= ({ fileList: newFileList }) => {
         setTotalFormPic(newFileList);
@@ -61,14 +53,14 @@ export const Edit = (url)=>{
             setTotalFormPic(image)
             setBaseImg(foodImage);
             data.foodPosts.map((food)=>{
-                console.log(food)
+                // console.log(food)
                 const temp = {
                     "uid": food.id,
                     "thumbUrl": food.foodImage,
                 }
                 food.pic = [temp]
             })
-            
+            console.log(data.foodPosts)
             setForms(data.foodPosts)
 
 
@@ -78,28 +70,47 @@ export const Edit = (url)=>{
  
     const handleTotalForm = (fileds)=>{
         console.log(fileds)
-        fileds.pics = baseImg;
-        fileds.pic = [{url:fileds.pic[0].thumbUrl,uid:fileds.pic[0].uid}]
-        headFormRequest(fileds)
+        fileds.pics = forms.filter(item=>item.submit);
+        Promise.allSettled(foodPostID).then(value=>{
+            const foodPostIDs = value.map(item=>item.value);
+            fileds.foodPostIDs = foodPostIDs;
+            fileds.userId = userId;
+            fileds.pics = baseImg;
+            fileds.pic = totalFormPic
+            headFormRequest(fileds)
+        }) 
+        
     }
 
     const handleSubForm = (fileds,formIndex,formId)=>{
-        console.log(formIndex,baseImg.length-1);
+        // console.log(formIndex,baseImg.length-1);
         if(formIndex<=baseImg.length-1){
             console.log('leng',fileds);
             const tmp = [...baseImg];
             tmp[formIndex].thumbUrl = fileds?.pic.file?.thumbUrl||fileds.pic[0].thumbUrl;
             tmp[formIndex].submit = true
             setBaseImg(tmp);
+            const foodDate = {
+                "name": fileds.name,
+                "comment": fileds.comment,
+                "rate": fileds.rate,
+                "pic": {
+                    "url":fileds.pic[0].thumbUrl
+                }
+            }
+            console.log(foodDate)
+            const id = subFormRequest(foodDate)
+            setFoodPostID([...foodPostID,id])
             setForms(forms.map((item,index)=>{if(formIndex===index){item.submit=true}; return item}))
             return 
         }
-        console.log(fileds,'ds');
+        // console.log(fileds,'ds');
         if(fileds?.pic.file?.thumbUrl){
             setBaseImg([...baseImg,{url:fileds?.pic.file.thumbUrl}]);
             const tmp = [...forms];
             tmp[formIndex].submit = true;
-            subFormRequest({...fileds,pic:{url:fileds.pic.file.thumbUrl,uid:fileds.pic.file.uid},id:formId})
+            const id = subFormRequest({...fileds,pic:{url:fileds.pic.file.thumbUrl,uid:fileds.pic.file.uid},id:formId})
+            setFoodPostID([...foodPostID,id])
             setForms(tmp)
         }
     }
@@ -112,8 +123,58 @@ export const Edit = (url)=>{
             // console.log(response,"response");
             window.location.href = "/mainpage/" + userId;
     }
+    const subFormRequest = async (foodData) => {
+        console.log(foodData,"subFormData");
+        const data = {
+            "name": foodData.name,
+            "rate": foodData.rate,
+            "comment": foodData.comment,
+            "foodImage": foodData.pic.url,
+        }
+        const res = await fetch('http://localhost:8080/creatFoodPost', {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+        })
+        const response = await res.json();
+        console.log(response,"response");
+        return response.id;
+    };
+    const headFormRequest = async (data) => {
+        console.log(data,"handleTotalForm");
+        console.log(foodPostID,"foodPostID");
+        const body = {
+            "name":data.name,
+            "location":data.location,
+            "title":data.title,
+            "comment":data.comment,
+            "rate":data.rate,
+            "image":data.pic[0].thumbUrl,
+            "foodPostsId": data.foodPostIDs,
+        }
+        console.log(body,"body");
+        const res = await fetch('http://localhost:8080/updatePost/'+postId + '/' + userId, {
+            method:'POST',
+            body: JSON.stringify(body),
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+        
+        })
+        const response = await res.json();
+        console.log(response,"response");
+        window.location.href = "/mainpage/" + userId; 
+    };
 
-    const handleSubFormCancel = (item,formIndex)=>{
+    const handleSubFormCancel = async (item,formIndex)=>{
+        console.log(item,formIndex);
+        const res = await fetch('http://localhost:8080/deleteFoodPost/' + item.id + "/" + postId, {
+            method: 'Delete',
+        })
         setForms(forms.filter(form=>form.id!==item.id));
         setBaseImg(baseImg.filter((_,index)=>index!==formIndex));
     }
@@ -180,12 +241,7 @@ export const Edit = (url)=>{
                         </Form.Item>
                     </div>
                     <div style={{flex:1,aspectRatio:2/1}} id="totalFormRightPic">
-                        <Form.Item getValueFromEvent={(({fileList})=>fileList.map(img=>img))} name="pic" rules={[
-                                    {
-                                    required: true,
-                                    message: 'Please add restaurant picture',
-                                    },
-                                ]}>
+                        <Form.Item getValueFromEvent={(({fileList})=>fileList.map(img=>img))} name="pic">
                             <Upload fileList={totalFormPic} onChange={onChange} alt="just one pic" listType="picture-card" showUploadList={{showPreviewIcon:false,showRemoveIcon:true}} onPreview={()=>{}} >{totalFormPic.length>0?null:"Add picture"}</Upload>
                         </Form.Item>
                     </div>
@@ -253,7 +309,7 @@ export const Edit = (url)=>{
                         name="comment" rules={[
                             {
                             required: true,
-                            message: 'Please add food name',
+                            message: 'Please add food Comment',
                             },
                         ]} 
                     >
