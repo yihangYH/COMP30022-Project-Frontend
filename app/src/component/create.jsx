@@ -7,13 +7,14 @@ import { useParams } from "react-router-dom";
 
 const subFormRequest = async (foodData) => {
     console.log(foodData,"subFormData");
+
     const data = {
         "name": foodData.header,
         "rate": foodData.rate,
         "comment": foodData.foodComment,
         "foodImage": foodData.pic,
     }
-    console.log(data,"data");
+
     const res = await fetch('http://localhost:8080/creatFoodPost', {
         method: 'POST',
         body: JSON.stringify(data),
@@ -24,6 +25,7 @@ const subFormRequest = async (foodData) => {
     })
     const response = await res.json();
     console.log(response,"response");
+    // window.location.href = "/mainpage/"+userId
     return response.id;
 };
 const headFormRequest = async (data) => {
@@ -47,7 +49,7 @@ const headFormRequest = async (data) => {
     })
     const response = await res.json();
     console.log(response,"response");
-    // window.location.href = "/mainpage/1"
+    window.location.href = "/mainpage/" + data.userId;
   };
   
 
@@ -82,7 +84,6 @@ export const Create = (props)=>{
             headFormRequest(fileds)
         }) 
 
-        // headFormRequest(fileds)
     }
     const handleSubForm = (fileds,formIndex,formId)=>{
         setBaseImg([...baseImg,{url:fileds?.pic[0].thumbUrl}]);
