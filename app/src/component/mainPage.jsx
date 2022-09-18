@@ -48,7 +48,7 @@ function MaigPage(props){
     if(data){
         return(
             <div>
-                <Header btnText="Log out" color="black" backgroundColor="white" border="2px solid black"/>
+                <Header btnText="Log out" color="black" backgroundColor="white" border="2px solid black" setCssStyle={setCssStyle} setLoading={setLoading} cssStyle={style}/>
                 <div style={{display:"block",height:"100%",position:"absolute",width:"100%"}}>
                     <div style={cssStyle}>            
                         <PacmanLoader loading={loading} color="#FF7539" cssOverride={override} size={50} />

@@ -3,16 +3,40 @@ import { useParams } from "react-router-dom";
 import Header from './header';
 import '../css/comment.css'
 import Food from './food';
+
+import PacmanLoader from "react-spinners/PacmanLoader";
+
+const override = {
+    display: "block",
+    margin: "0 auto",
+    top: "50%",
+};
+
 function Comment(props){
     const { postId } = useParams()
     const { userId } = useParams()
     useEffect(() => {
         document.title = 'Post';
     })
+    let [loading, setLoading] = useState(false);
+    let [color, setColor] = useState("#ffffff");
+    let[cssStyle, setCssStyle] = useState();
+    const style = {
+        zIndex:"9999",
+        display:"grid", 
+        width:"100%" ,
+        height:"100%",
+        position:"absolute", 
+        backgroundColor:"rgba(0,0,0,-1)"
+    }
     const backToMain = () => {
+        setCssStyle(style);
+        setLoading(true);
         window.location.href = '/mainpage/'+userId;;
     }
     const editClicked = () => {
+        setCssStyle(style);
+        setLoading(true);
         window.location.href = '/editpost/'+userId+'/'+postId;
     }
     const[data,setData] = useState();
@@ -26,10 +50,15 @@ function Comment(props){
     if(data != null){
         return(
             <div>
-                <Header btnText="Log out" />
-                <div className='button'>
-                    <button className='back' onClick={backToMain}>Back</button>
-                    <button className='edit' onClick={editClicked}>Edit</button>
+                <div style={{display:"block", position:"absolute",  height:"100%", width:"100%"}}>
+                    <div style={cssStyle}>            
+                        <PacmanLoader loading={loading} color="#FF7539" cssOverride={override} size={50} />
+                    </div>
+                    <Header btnText="Log out" color="black" backgroundColor="white" border="2px solid black" setCssStyle={setCssStyle} setLoading={setLoading} cssStyle={style}/>
+                    <div className='button'>
+                        <button className='back' onClick={backToMain}>Back</button>
+                        <button className='edit' onClick={editClicked}>Edit</button>
+                    </div>
                 </div>
                 <div className='detail'>
                     <ul className='detail-list'>
@@ -67,18 +96,6 @@ function Comment(props){
                                         </li>
                                     )
                                 })}
-                                    {/* <li>
-                                        <Food />
-                                    </li>
-                                    <li>
-                                        <Food />
-                                    </li>
-                                    <li>
-                                        <Food />
-                                    </li>
-                                    <li>
-                                        <Food />
-                                    </li> */}
                                 </ul>
                             </div>
                         </li>

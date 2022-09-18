@@ -4,22 +4,39 @@ import "../css/editCreate.css";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { PlusOutlined } from '@ant-design/icons';
+import PacmanLoader from "react-spinners/PacmanLoader";
+import Swal from 'sweetalert2'
 
-const form = {
+const override = {
+    display: "block",
+    margin: "0 auto",
+    top: "50%",
+};
 
-}
 
-const data = [
+const form = {}
 
-]
+const data = []
+
 export const Edit = (url)=>{
 
- const [total, setTotal] = useState(null);
+    const [total, setTotal] = useState(null);
 
- const [forms, setForms] = useState([])
- const { postId } = useParams()
- const { userId } = useParams()
- const [foodPostID, setFoodPostID] = useState([]);
+    const [forms, setForms] = useState([])
+    const { postId } = useParams()
+    const { userId } = useParams()
+    const [foodPostID, setFoodPostID] = useState([]);
+    let [loading, setLoading] = useState(false);
+    let [color, setColor] = useState("#ffffff");
+    let[cssStyle, setCssStyle] = useState();
+    const style = {
+        zIndex:"9999",
+        display:"grid", 
+        width:"100%" ,
+        height:"100%",
+        position:"absolute", 
+        backgroundColor:"rgba(0,0,0,-1)"
+    }
 
  const [baseImg, setBaseImg] = useState([]);
 
@@ -69,6 +86,8 @@ export const Edit = (url)=>{
     }, [])
  
     const handleTotalForm = (fileds)=>{
+        setCssStyle(style);
+        setLoading(true);
         console.log(fileds)
         fileds.pics = forms.filter(item=>item.submit);
         Promise.allSettled(foodPostID).then(value=>{
@@ -84,6 +103,8 @@ export const Edit = (url)=>{
 
     const handleSubForm = (fileds,formIndex,formId)=>{
         // console.log(formIndex,baseImg.length-1);
+        setCssStyle(style);
+        setLoading(true);
         if(formIndex<=baseImg.length-1){
             console.log('leng',fileds);
             const tmp = [...baseImg];
@@ -115,7 +136,8 @@ export const Edit = (url)=>{
         }
     }
     const backToMain = async() => {
-
+        setCssStyle(style);
+        setLoading(true);
         const res = await fetch('http://localhost:8080/deletepost/'+userId+'/'+postId, {
                 method: 'Delete',
             })
@@ -141,6 +163,10 @@ export const Edit = (url)=>{
         })
         const response = await res.json();
         console.log(response,"response");
+        if(response.status === "true"){
+            setCssStyle();
+            setLoading(false);
+        }
         return response.id;
     };
     const headFormRequest = async (data) => {
@@ -156,25 +182,45 @@ export const Edit = (url)=>{
             "foodPostsId": data.foodPostIDs,
         }
         console.log(body,"body");
-        const res = await fetch('http://localhost:8080/updatePost/'+postId + '/' + userId, {
-            method:'POST',
-            body: JSON.stringify(body),
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
+        if(data.foodPostIDs.length !== data.pics.length){
+            setCssStyle();
+            setLoading(false);
+            Swal.fire({
+                title: 'Error!',
+                text: 'Please Save All Food Post Before Submit',
+                icon: 'error',
+                confirmButtonText: 'Retry'
+            })
+            
+            return;
+        }else{
+            const res = await fetch('http://localhost:8080/updatePost/'+postId + '/' + userId, {
+                method:'POST',
+                body: JSON.stringify(body),
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+            
+            })
+            const response = await res.json();
+            console.log(response,"response");
+            setCssStyle();
+            setLoading(false);
+            window.location.href = "/mainpage/" + userId; 
+        }
         
-        })
-        const response = await res.json();
-        console.log(response,"response");
-        window.location.href = "/mainpage/" + userId; 
     };
 
     const handleSubFormCancel = async (item,formIndex)=>{
+        setCssStyle(style);
+        setLoading(true);
         console.log(item,formIndex);
         const res = await fetch('http://localhost:8080/deleteFoodPost/' + item.id + "/" + postId, {
             method: 'Delete',
         })
+        setCssStyle();
+        setLoading(false);
         setForms(forms.filter(form=>form.id!==item.id));
         setBaseImg(baseImg.filter((_,index)=>index!==formIndex));
     }
@@ -182,6 +228,9 @@ export const Edit = (url)=>{
 
     return ( 
         <div style={{flex:1}} id="mf" >
+            <div style={cssStyle}>            
+                <PacmanLoader loading={loading} color="#FF7539" cssOverride={override} size={50} />
+            </div>
             {total&&<Form
                 style={{ flex: 1 ,border:"1px solid #c8c8c8",padding:"10px" }}
                 onFinish={handleTotalForm} initialValues={total} className="title-selection"
