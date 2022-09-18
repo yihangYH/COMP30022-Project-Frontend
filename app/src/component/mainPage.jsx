@@ -15,6 +15,9 @@ const override = {
 
 
 function MaigPage(props){
+    if(localStorage.getItem("user")==null){
+        window.location.href = '/';
+    }
     const { userId } = useParams()
     useEffect(() => {
         document.title = 'Main Page';
@@ -40,15 +43,17 @@ function MaigPage(props){
     }
 
     useState(async ()=>{
+        
         await fetch('http://localhost:8080/getuser/'+userId)
         .then(res => res.json())
         .then(data => {setData(data);console.log(data,"data")})
+        
     },[])
 
     if(data){
         return(
             <div>
-                <Header btnText="Log out" color="black" backgroundColor="white" border="2px solid black" setCssStyle={setCssStyle} setLoading={setLoading} cssStyle={style}/>
+                <Header btnText="Log out" color="black" backgroundColor="white" border="2px solid black" setCssStyle={setCssStyle} setLoading={setLoading} cssStyle={style} loginOrlogout = {"logout"}/>
                 <div style={{display:"block",height:"100%",position:"absolute",width:"100%"}}>
                     <div style={cssStyle}>            
                         <PacmanLoader loading={loading} color="#FF7539" cssOverride={override} size={50} />

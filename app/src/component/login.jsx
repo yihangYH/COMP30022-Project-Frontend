@@ -7,6 +7,7 @@ import { useState} from "react";
 import { Button, Checkbox, Form, Input, Upload } from "antd"
 import PacmanLoader from "react-spinners/PacmanLoader";
 
+
 const override = {
     display: "block",
     margin: "0 auto",
@@ -43,6 +44,7 @@ function Login(){
                 'Content-Type': 'application/json',
             },
         })
+        localStorage.setItem('user', data.email);
         const response = await res.json();
         console.log(response,"response");
         const url = "/mainpage/"+response.id;
@@ -79,6 +81,8 @@ function Login(){
         }
     }
     const cancel = ()=>{
+        setCssStyle(style);
+        setLoading(true);
         window.location.href = "/"        
         
     }

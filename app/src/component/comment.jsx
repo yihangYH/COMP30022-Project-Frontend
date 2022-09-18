@@ -13,6 +13,9 @@ const override = {
 };
 
 function Comment(props){
+    if(localStorage.getItem("user")==null){
+        window.location.href = '/';
+    }
     const { postId } = useParams()
     const { userId } = useParams()
     useEffect(() => {
@@ -54,7 +57,7 @@ function Comment(props){
                     <div style={cssStyle}>            
                         <PacmanLoader loading={loading} color="#FF7539" cssOverride={override} size={50} />
                     </div>
-                    <Header btnText="Log out" color="black" backgroundColor="white" border="2px solid black" setCssStyle={setCssStyle} setLoading={setLoading} cssStyle={style}/>
+                    <Header btnText="Log out" color="black" backgroundColor="white" border="2px solid black" setCssStyle={setCssStyle} setLoading={setLoading} cssStyle={style} loginOrlogout = {"logout"}/>
                     <div className='button'>
                         <button className='back' onClick={backToMain}>Back</button>
                         <button className='edit' onClick={editClicked}>Edit</button>

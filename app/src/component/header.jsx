@@ -5,7 +5,12 @@ function Header(props){
     const btnClicked = () => {
         props.setCssStyle(props.cssStyle);
         props.setLoading(true);
-        // window.location.href = '/';
+        if(props.loginOrlogout === "login"){
+            window.location.href = "/login";
+        }else{
+            localStorage.clear();
+            window.location.href = '/';
+        }
     }
 
     return(

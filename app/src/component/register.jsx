@@ -73,6 +73,8 @@ function Register(){
     }
 
     const backToLogin = () => {
+        setCssStyle(style);
+        setLoading(true);
         window.location.href = "/login"
     }
   

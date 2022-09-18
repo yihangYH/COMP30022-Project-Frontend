@@ -10,6 +10,9 @@ const override = {
 };
 
 function EditPost(){
+    if(localStorage.getItem("user")==null){
+        window.location.href = '/';
+    }
     useEffect(() => {
         document.title = 'Edit';
     });
@@ -30,7 +33,7 @@ function EditPost(){
             <div style={cssStyle}>            
                 <PacmanLoader loading={loading} color="#FF7539" cssOverride={override} size={50} />
             </div>
-            <Header btnText="Log out" color="black" backgroundColor="white" border="2px solid black" setCssStyle={setCssStyle} setLoading={setLoading} cssStyle={style}/>
+            <Header btnText="Log out" color="black" backgroundColor="white" border="2px solid black" setCssStyle={setCssStyle} setLoading={setLoading} cssStyle={style} loginOrlogout = {"logout"}/>
             <Edit />
         </div>
     )

@@ -16,7 +16,6 @@ const override = {
   
 
 export const Create = (props)=>{
-    console.log(props.test)
     const { userId } = useParams()
     const [forms, setForms] = useState([])
     const [baseImg, setBaseImg] = useState([]);

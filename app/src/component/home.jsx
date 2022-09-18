@@ -1,16 +1,34 @@
-import React , { useEffect } from 'react';
+import React , { useEffect, useState } from 'react';
 import Header from './header';
 import '../css/home.css';
+import PacmanLoader from "react-spinners/PacmanLoader";
+
+const override = {
+    display: "block",
+    margin: "0 auto",
+    top: "50%",
+};
 
 function Home(){
     useEffect(() => {
         document.title = 'Restaurant @UniMelb';
     });
 
+    let [loading, setLoading] = useState(false);
+    let [color, setColor] = useState("#ffffff");
+    let[cssStyle, setCssStyle] = useState();
+    const style = {
+        zIndex:"9999",
+        display:"grid", 
+        width:"100%" ,
+        height:"100%",
+        position:"absolute", 
+        backgroundColor:"rgba(0,0,0,-1)"
+    }
  
     return(
         <div>
-            <Header btnText="Log in"/>
+            <Header btnText="Log in" setCssStyle={setCssStyle} setLoading={setLoading} cssStyle={style} loginOrlogout = {"login"}/>
             <div className='content'>
                 <p>
                     Everyone goes to many restaurants in their lifetime. Are there any restaurants that have impressed you? Is there any food that keeps you coming back for more?
