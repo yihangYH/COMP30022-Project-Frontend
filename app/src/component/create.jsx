@@ -4,6 +4,7 @@ import "../css/editCreate.css";
 import { useState } from "react";
 import { PlusOutlined } from '@ant-design/icons';
 import { useParams } from "react-router-dom";
+import Swal from 'sweetalert2'
 
 import PacmanLoader from "react-spinners/PacmanLoader";
 
@@ -75,24 +76,38 @@ export const Create = (props)=>{
             "foodPostsId": data.foodPostIDs,
             "location": data.restaurantLocation,
         }
-        console.log(postData,"postData");
-        const res = await fetch('http://localhost:8080/create/'+data.userId, {
-            method: 'POST',
-            body: JSON.stringify(postData),
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
-        })
-        const response = await res.json();
-        console.log(response,"response");
-        window.location.href = "/mainpage/" + data.userId;
+        // console.log(postData,"postData");
+        console.log(data,"data");
+        if(data.foodPostIDs.length !== data.pics.length){
+            setCssStyle();
+            setLoading(false);
+            Swal.fire({
+                title: 'Error!',
+                text: 'Please Save All Food Post Before Submit',
+                icon: 'error',
+                confirmButtonText: 'Retry'
+            })
+            
+            return;
+        }else{
+            const res = await fetch('http://localhost:8080/create/'+data.userId, {
+                method: 'POST',
+                body: JSON.stringify(postData),
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+            })
+            const response = await res.json();
+            console.log(response,"response");
+            window.location.href = "/mainpage/" + data.userId;
+
+        }
+        
+        
       };
     const backToMain = () => {
         window.location.href = "/mainpage/" + userId;
-        // Promise.all(foodPostID).then((values) => {
-        //     console.log(values,"values");
-        // })
     }
 
     const handleTotalForm = (fileds)=>{
