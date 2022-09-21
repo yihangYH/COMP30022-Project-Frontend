@@ -292,7 +292,7 @@ export const Create = (props)=>{
 
                     <Form.Item
                         style={{ flex: 1 }}
-                        name="foodComment" rules={[
+                        name="comment" rules={[
                             {
                             required: true,
                             message: 'Please add food comment',
