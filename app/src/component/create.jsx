@@ -33,14 +33,6 @@ export const Create = (props)=>{
         position:"absolute", 
         backgroundColor:"rgba(0,0,0,-1)"
     }
-    // const formFile = (e,formIndex) => {
-    //     let data = e.fileList;
-    //     data[0].status='done';
-    //     const tmp = [...forms];
-    //     tmp[formIndex].uploadDone = true;
-    //     setForms(tmp)
-    //     return e?.fileList;
-    // };
     const subFormRequest = async (foodData) => {
         console.log(foodData,"subFormData");
         const data = {
@@ -86,8 +78,7 @@ export const Create = (props)=>{
                 text: 'Please Save All Food Post Before Submit',
                 icon: 'error',
                 confirmButtonText: 'Retry'
-            })
-            
+            })  
             return;
         }else{
             const res = await fetch('http://localhost:8080/create/'+data.userId, {
@@ -102,14 +93,11 @@ export const Create = (props)=>{
             console.log(response,"response");
             window.location.href = "/mainpage/" + data.userId;
 
-        }
-        
-        
-      };
+        }   
+    };
     const backToMain = () => {
         window.location.href = "/mainpage/" + userId;
     }
-
     const handleTotalForm = (fileds)=>{
         setLoading(true);
         setCssStyle(style);
@@ -131,7 +119,6 @@ export const Create = (props)=>{
         const id = subFormRequest({...fileds,pic:fileds.pic[0].thumbUrl,subformId:formId})
         setFoodPostID([...foodPostID, id])
         setForms(tmp)
-        // console.log(forms)
     }
 
     const formFileEventHandle = (e,formIndex) => {
@@ -143,12 +130,11 @@ export const Create = (props)=>{
             setForms(tmp)
             return e?.fileList;
         }
-        // remove image from sun-form
         const tmp = [...forms];
         tmp[formIndex].uploadDone = false;
         setForms(tmp)
         return e?.fileList;
-      };
+    };
     const [firstName, setFirstName] = useState('Default value');
     return (      
         <div style={{flex:1}} id="mf">
@@ -246,9 +232,9 @@ export const Create = (props)=>{
                     {baseImg.length<6&&forms.length<6&&
                     <div style={{aspectRatio:1,width:"100px",display:'flex',justifyContent:"center",alignItems:"center",border:"2px solid grey", 
                     cursor:"pointer"}} onClick={()=>setForms([...forms,{subformid:"form"+Math.random().toString(36).slice(2)}])}>
-                        
                         <PlusOutlined />
-                    </div>}
+                    </div>
+                    }
                     
                 </div>
                 <Button htmlType="button" shape="round" className="cancle-btn" onClick={backToMain}>Cancle</Button>
@@ -308,7 +294,8 @@ export const Create = (props)=>{
                     </div>
                     
                     }
-                </Form>))
+                </Form>
+                ))
                 
             }
         </div>          
