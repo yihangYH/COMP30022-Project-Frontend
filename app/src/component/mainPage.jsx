@@ -12,7 +12,8 @@ const override = {
     top: "50%",
 };
 
-
+const localGetUserEndpoint = 'http://localhost:8080/getUser/';
+const productionGetUserEndpoint = 'https://restaurant-at-unimelb-api.herokuapp.com/getUser/';
 
 function MaigPage(props){
     if(localStorage.getItem("user")==null){
@@ -44,7 +45,7 @@ function MaigPage(props){
 
     useState(async ()=>{
         
-        await fetch('http://localhost:8080/getuser/'+userId)
+        await fetch(localGetUserEndpoint+userId)
         .then(res => res.json())
         .then(data => {setData(data);console.log(data,"data")})
         
