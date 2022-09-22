@@ -14,6 +14,9 @@ const override = {
     top: "50%",
 };
 
+const localLoginEndpoint = 'http://localhost:8080/login/';
+const productionLoginEndpoint = 'https://restaurant-at-unimelb-api.herokuapp.com/login/';
+
 function Login(){
     useEffect(() => {
         document.title = 'Lgoin';
@@ -36,7 +39,7 @@ function Login(){
             "password":data.password
         }
         console.log(loginRequest,"loginRequest");
-        const res = await fetch('http://localhost:8080/login', {
+        const res = await fetch(localLoginEndpoint, {
             method: 'POST',
             body: JSON.stringify(loginRequest),
             headers: {

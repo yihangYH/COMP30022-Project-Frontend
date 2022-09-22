@@ -12,6 +12,9 @@ const override = {
     top: "50%",
 };
 
+const localGetPostEndpoint = 'http://localhost:8080/getPost/';
+const productionGetPostEndpoint = 'https://restaurant-at-unimelb-api.herokuapp.com/getPost/';
+
 function Comment(props){
     if(localStorage.getItem("user")==null){
         window.location.href = '/';
@@ -46,7 +49,7 @@ function Comment(props){
 
 
     useState(async ()=>{
-        await fetch('http://localhost:8080/getpost/'+postId)
+        await fetch(localGetPostEndpoint+postId)
         .then(res => res.json())
         .then(data => {setData(data);console.log(data,"data")})
     },[])

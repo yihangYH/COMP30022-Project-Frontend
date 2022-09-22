@@ -13,6 +13,22 @@ const override = {
     top: "50%",
 };
 
+const localGetPostEndpoint = 'http://localhost:8080/getPost/';
+const productionGetPostEndpoint = 'https://restaurant-at-unimelb-api.herokuapp.com/getPost/';
+
+const localDeletePostEndpoint = 'http://localhost:8080/deletePost/';
+const productionDeletePostEndpoint = 'https://restaurant-at-unimelb-api.herokuapp.com/deletePost/';
+
+const localCreatFoodPostEndpoint = 'http://localhost:8080/creatFoodPost/';
+const productionCreatFoodPostEndpoint = 'https://restaurant-at-unimelb-api.herokuapp.com/getPost/';
+
+const localUpdatePostEndpoint = 'http://localhost:8080/updatePost/';
+const productionUpdatePostEndpoint = 'https://restaurant-at-unimelb-api.herokuapp.com/updatePost/';
+
+const localDeleteFoodPostEndpoint = 'http://localhost:8080/deleteFoodPost/';
+const productionDeleteFoodPostEndpoint = 'http://localhost:8080/deleteFoodPost/';
+
+
 
 const form = {}
 
@@ -47,7 +63,7 @@ export const Edit = (url)=>{
         setTotalFormPic(newFileList);
     };
     useEffect(() => {
-        const getDataPromise = fetch('http://localhost:8080/getpost/'+postId);
+        const getDataPromise = fetch(localGetPostEndpoint + postId);
         getDataPromise.then(res => res.json())
         .then(data=>{
             // console.log(data)
@@ -138,7 +154,7 @@ export const Edit = (url)=>{
     const backToMain = async() => {
         setCssStyle(style);
         setLoading(true);
-        const res = await fetch('http://localhost:8080/deletepost/'+userId+'/'+postId, {
+        const res = await fetch(localDeletePostEndpoint+userId+'/'+postId, {
                 method: 'Delete',
             })
             // const response = await res.json();
@@ -153,7 +169,7 @@ export const Edit = (url)=>{
             "comment": foodData.comment,
             "foodImage": foodData.pic.url,
         }
-        const res = await fetch('http://localhost:8080/creatFoodPost', {
+        const res = await fetch(localCreatFoodPostEndpoint, {
             method: 'POST',
             body: JSON.stringify(data),
             headers: {
@@ -194,7 +210,7 @@ export const Edit = (url)=>{
             
             return;
         }else{
-            const res = await fetch('http://localhost:8080/updatePost/'+postId + '/' + userId, {
+            const res = await fetch(localUpdatePostEndpoint +postId + '/' + userId, {
                 method:'POST',
                 body: JSON.stringify(body),
                 headers: {
@@ -216,7 +232,7 @@ export const Edit = (url)=>{
         setCssStyle(style);
         setLoading(true);
         console.log(item,formIndex);
-        const res = await fetch('http://localhost:8080/deleteFoodPost/' + item.id + "/" + postId, {
+        const res = await fetch(localDeleteFoodPostEndpoint + item.id + "/" + postId, {
             method: 'Delete',
         })
         setCssStyle();

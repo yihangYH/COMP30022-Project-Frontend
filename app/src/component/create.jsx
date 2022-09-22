@@ -13,7 +13,11 @@ const override = {
     margin: "0 auto",
     top: "50%",
 };
+const localCreatFoodPostEndpoint = 'http://localhost:8080/creatFoodPost/';
+const productionCreatFoodPostEndpoint = 'https://restaurant-at-unimelb-api.herokuapp.com/getPost/';
 
+const localCreatPostEndpoint = 'http://localhost:8080/create/';
+const productionCreatPostEndpoint = 'https://restaurant-at-unimelb-api.herokuapp.com/create/';
   
 
 export const Create = (props)=>{
@@ -42,7 +46,7 @@ export const Create = (props)=>{
             "foodImage": foodData.pic,
         }
     
-        const res = await fetch('http://localhost:8080/creatFoodPost', {
+        const res = await fetch(localCreatFoodPostEndpoint, {
             method: 'POST',
             body: JSON.stringify(data),
             headers: {
@@ -81,7 +85,7 @@ export const Create = (props)=>{
             })  
             return;
         }else{
-            const res = await fetch('http://localhost:8080/create/'+data.userId, {
+            const res = await fetch(localCreatPostEndpoint+data.userId, {
                 method: 'POST',
                 body: JSON.stringify(postData),
                 headers: {

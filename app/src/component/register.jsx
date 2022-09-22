@@ -13,6 +13,9 @@ const override = {
     top: "50%",
 };
 
+const localRegisterEndpoint = 'http://localhost:8080/register/';
+const productionRegisterEndpoint = 'https://restaurant-at-unimelb-api.herokuapp.com/register/';
+
 function Register(){
     useEffect(() => {
         document.title = 'Register';
@@ -53,7 +56,7 @@ function Register(){
                 "favouriteRestaurant":data.favouriteRestaurant,
                 "image":data.pic.thumbUrl
             }
-            const res = await fetch('http://localhost:8080/register', {
+            const res = await fetch(localRegisterEndpoint, {
                 method: 'POST',
                 body: JSON.stringify(registerRequest),
                 headers: {
