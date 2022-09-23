@@ -49,7 +49,7 @@ function Comment(props){
 
 
     useState(async ()=>{
-        await fetch(localGetPostEndpoint+postId)
+        await fetch(productionGetPostEndpoint+postId)
         .then(res => res.json())
         .then(data => {setData(data);console.log(data,"data")})
     },[])

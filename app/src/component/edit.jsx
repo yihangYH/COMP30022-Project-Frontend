@@ -63,7 +63,7 @@ export const Edit = (url)=>{
         setTotalFormPic(newFileList);
     };
     useEffect(() => {
-        const getDataPromise = fetch(localGetPostEndpoint + postId);
+        const getDataPromise = fetch(productionGetPostEndpoint + postId);
         getDataPromise.then(res => res.json())
         .then(data=>{
             // console.log(data)
@@ -154,7 +154,7 @@ export const Edit = (url)=>{
     const backToMain = async() => {
         setCssStyle(style);
         setLoading(true);
-        const res = await fetch(localDeletePostEndpoint+userId+'/'+postId, {
+        const res = await fetch(productionDeletePostEndpoint+userId+'/'+postId, {
                 method: 'Delete',
             })
             // const response = await res.json();
@@ -210,7 +210,7 @@ export const Edit = (url)=>{
             
             return;
         }else{
-            const res = await fetch(localUpdatePostEndpoint +postId + '/' + userId, {
+            const res = await fetch(productionUpdatePostEndpoint +postId + '/' + userId, {
                 method:'POST',
                 body: JSON.stringify(body),
                 headers: {
@@ -232,7 +232,7 @@ export const Edit = (url)=>{
         setCssStyle(style);
         setLoading(true);
         console.log(item,formIndex);
-        const res = await fetch(localDeleteFoodPostEndpoint + item.id + "/" + postId, {
+        const res = await fetch(productionDeleteFoodPostEndpoint + item.id + "/" + postId, {
             method: 'Delete',
         })
         setCssStyle();
