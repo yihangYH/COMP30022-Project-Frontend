@@ -20,7 +20,7 @@ root.render(
     <Router>
         <Routes>
             <Route exact path='/' element={< Home />}></Route>
-            <Route exact path='/mainpage/:id' element={< MainPage />}></Route>
+            <Route exact path='/mainpage/:userId' element={< MainPage />}></Route>
             <Route exact path='/comment/:userId/:postId' element={< Comment />}></Route>
             <Route exact path='/login' element={<Login />}></Route>
             <Route exact path='/createpost/:userId' element={< CreatePost />}></Route>

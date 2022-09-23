@@ -6,10 +6,24 @@
 .post-title{
     font-size: x-large;
     width: 92%;
+    position: relative;
 }
 
 .list{
     display: flex;
+    position: relative;
+    width: 100%;
+}
+.li-title{
+    width: 90%;
+}
+
+.li-title p{
+    width: 100%;
+}
+
+.content-text{
+    width: 100%;
 }
 
 .content-pic{
@@ -61,6 +75,7 @@
     padding: 2% 2% 2% 2%;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
     float: right;
+    width: 96%;
 }
 
 .pic{

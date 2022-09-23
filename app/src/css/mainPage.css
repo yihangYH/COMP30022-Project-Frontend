@@ -41,6 +41,10 @@
     list-style: none;
 }
 
+.li-posts{
+    width: 100%;
+}
+
 .profile{
     display: flex;
     position: fixed;

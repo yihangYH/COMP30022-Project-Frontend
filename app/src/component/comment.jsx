@@ -1,80 +1,116 @@
-import React , { useEffect } from 'react';
+import React , { useEffect, useState } from 'react';
+import { useParams } from "react-router-dom";
 import Header from './header';
 import '../css/comment.css'
 import Food from './food';
+
+import PacmanLoader from "react-spinners/PacmanLoader";
+
+const override = {
+    display: "block",
+    margin: "0 auto",
+    top: "50%",
+};
+
+const localGetPostEndpoint = 'http://localhost:8080/getPost/';
+const productionGetPostEndpoint = 'https://restaurant-at-unimelb-api.herokuapp.com/getPost/';
+
 function Comment(props){
+    if(localStorage.getItem("user")==null){
+        window.location.href = '/';
+    }
+    const { postId } = useParams()
+    const { userId } = useParams()
     useEffect(() => {
         document.title = 'Post';
     })
+    let [loading, setLoading] = useState(false);
+    let [color, setColor] = useState("#ffffff");
+    let[cssStyle, setCssStyle] = useState();
+    const style = {
+        zIndex:"9999",
+        display:"grid", 
+        width:"100%" ,
+        height:"100%",
+        position:"absolute", 
+        backgroundColor:"rgba(0,0,0,-1)"
+    }
     const backToMain = () => {
-        window.location.href = '/mainpage/1';
+        setCssStyle(style);
+        setLoading(true);
+        window.location.href = '/mainpage/'+userId;;
     }
     const editClicked = () => {
-        window.location.href = '/editpost/1/1';
+        setCssStyle(style);
+        setLoading(true);
+        window.location.href = '/editpost/'+userId+'/'+postId;
     }
-    return(
-        <div>
-            <Header btnText="Log out" />
-            <div className='button'>
-                <button className='back' onClick={backToMain}>Back</button>
-                <button className='edit' onClick={editClicked}>Edit</button>
-            </div>
-            <div className='detail'>
-                <ul className='detail-list'>
-                    <li className='title'>
-                        <p>The unseen of spending three years at Pixelgrade</p>
-                    </li>
-                    <li >
-                        <p className='infor'>Rating: 
-                        <span className='rate-value'>3.8</span>
-                        <span className='rest-name'>
-                            🍽️ 
-                            <span className='infor-rest-name'>Uno Chicago Grill</span>
-                        </span>
-                        <span className='rest-location'>
-                            📍
-                            <span className='infor-ocation'>1901 Thornridge Cir. Shiloh, Hawaii 81063</span>
-                        </span>
-                        </p>
-                    </li>
-                    <li>
-                        <img className='main-pic' src={process.env.PUBLIC_URL + '/test1.png'} />
-                    </li>
-                    <li>
-                        <p className='description'>
-                        Lorem lpsum gum baork jina sikoa dita bhe ioen . Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam 
-                        consequat sunt nostrud amet.k jina sikoa dita bhe iamet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation 
-                        veniam consequat sunt nostrud amet.Lorem lpsum gum baork jina sikoa dita bhe ioen . Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia 
-                        consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.k jina sikoa dita bhe iamet minim mollit non deserunt ullamco est sit aliqua 
-                        dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.Lorem lpsum gum baork jina sikoa dita bhe ioen . 
-                        Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.k 
-                        jina sikoa dita bhe iamet minim 
-                        mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.
-                        </p>
-                    </li>
-                    <li>
-                        <div className='food-element-comment'>
-                            <ul>
-                                <li>
-                                    <Food />
-                                </li>
-                                <li>
-                                    <Food />
-                                </li>
-                                <li>
-                                    <Food />
-                                </li>
-                                <li>
-                                    <Food />
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
+    const[data,setData] = useState();
 
-    )
+
+    useState(async ()=>{
+        await fetch(productionGetPostEndpoint+postId)
+        .then(res => res.json())
+        .then(data => {setData(data);console.log(data,"data")})
+    },[])
+    if(data != null){
+        return(
+            <div>
+                <div style={{display:"block", position:"absolute",  height:"100%", width:"100%"}}>
+                    <div style={cssStyle}>            
+                        <PacmanLoader loading={loading} color="#FF7539" cssOverride={override} size={50} />
+                    </div>
+                    <Header btnText="Log out" color="black" backgroundColor="white" border="2px solid black" setCssStyle={setCssStyle} setLoading={setLoading} cssStyle={style} loginOrlogout = {"logout"}/>
+                    <div className='button'>
+                        <button className='back' onClick={backToMain}>Back</button>
+                        <button className='edit' onClick={editClicked}>Edit</button>
+                    </div>
+                </div>
+                <div className='detail'>
+                    <ul className='detail-list'>
+                        <li className='title'>
+                            <p>{data.title}</p>
+                        </li>
+                        <li >
+                            <p className='infor'>Rating: 
+                            <span className='rate-value'>{data.rate}</span>
+                            <span className='rest-name'>
+                                🍽️ &nbsp;
+                                <span>{data.name}</span>
+                            </span>
+                            <span className='rest-location'>
+                                📍 &nbsp;
+                                <span >{data.location}</span>
+                            </span>
+                            </p>
+                        </li>
+                        <li>
+                            <img className='main-pic' src={data.image} />
+                        </li>
+                        <li>
+                            <p className='description'>
+                                {data.comment}
+                            </p>
+                        </li>
+                        <li>
+                            <div className='food-element-comment'>
+                                <ul>
+                                {data.foodPosts.map((item,index)=>{
+                                    return(
+                                        <li key={index}>
+                                            <Food data={item}/>
+                                        </li>
+                                    )
+                                })}
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+    
+        )
+    }
 }
 
 export default Comment;

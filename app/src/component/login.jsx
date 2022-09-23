@@ -3,28 +3,66 @@ import Header from './header';
 import Swal from 'sweetalert2'
 import "antd/dist/antd.min.css";
 import '../css/login.css';
-import { useState } from "react";
+import { useState} from "react";
 import { Button, Checkbox, Form, Input, Upload } from "antd"
+import PacmanLoader from "react-spinners/PacmanLoader";
+
+
+const override = {
+    display: "block",
+    margin: "0 auto",
+    top: "50%",
+};
+
+const localLoginEndpoint = 'http://localhost:8080/login/';
+const productionLoginEndpoint = 'https://restaurant-at-unimelb-api.herokuapp.com/login/';
 
 function Login(){
     useEffect(() => {
         document.title = 'Lgoin';
     });
-
+    let [loading, setLoading] = useState(false);
+    let [color, setColor] = useState("#ffffff");
+    let[cssStyle, setCssStyle] = useState();
+    const style = {
+        zIndex:"9999",
+        display:"grid", 
+        width:"100%" ,
+        height:"100%",
+        position:"absolute", 
+        backgroundColor:"rgba(0,0,0,-1)"
+    }
     const [showPassword, setShowpassword] = useState("Password");
-    const formRequest = (data) => {
-        console.log(data.email === "demo@demo.com");
-        if(data.email === "demo@demo.com" && data.password === "12345678"){
-            
-            window.location.href = "/mainpage/1"
+    const formRequest = async(data) => {
+        const loginRequest = {
+            "email":data.email,
+            "password":data.password
+        }
+        console.log(loginRequest,"loginRequest");
+        const res = await fetch(productionLoginEndpoint, {
+            method: 'POST',
+            body: JSON.stringify(loginRequest),
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+        })
+        localStorage.setItem('user', data.email);
+        const response = await res.json();
+        console.log(response,"response");
+        const url = "/mainpage/"+response.id;
+        if(response.status == "true"){
+            window.location.href = url
         }else{
+            setLoading(false);
+            setCssStyle();
             Swal.fire({
                 title: 'Error!',
-                text: 'Please enter correct email or password',
+                text: 'Please Check The Password And Email',
                 icon: 'error',
                 confirmButtonText: 'Retry'
             })
-        }
+        }   
         
     };
 
@@ -33,6 +71,9 @@ function Login(){
     }
 
     const handleTotalForm = (fileds)=>{
+        console.log(fileds,"fileds");
+        setCssStyle(style);
+        setLoading(true);
         formRequest(fileds)
     }
     const onChange = (event)=>{
@@ -43,14 +84,19 @@ function Login(){
         }
     }
     const cancel = ()=>{
-        window.location.href = "/"
+        setCssStyle(style);
+        setLoading(true);
+        window.location.href = "/"        
+        
     }
 
     return(
         <div>
             <Header btnText="Log in" display="none"/>
             <div className='login-section'>
-                
+                <div style={cssStyle}>            
+                    <PacmanLoader loading={loading} color="#FF7539" cssOverride={override} size={50} />
+                </div>
                 <ul className='login-section-ul'>
                     <li className='login-section-main'>
                     <Form  onFinish={handleTotalForm}>
@@ -100,7 +146,6 @@ function Login(){
                     </li>
                 </ul>
             </div>
-
         </div>
     )
 
