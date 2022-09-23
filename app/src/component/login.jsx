@@ -39,7 +39,7 @@ function Login(){
             "password":data.password
         }
         console.log(loginRequest,"loginRequest");
-        const res = await fetch(localLoginEndpoint, {
+        const res = await fetch(productionLoginEndpoint, {
             method: 'POST',
             body: JSON.stringify(loginRequest),
             headers: {

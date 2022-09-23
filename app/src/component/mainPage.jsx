@@ -45,7 +45,7 @@ function MaigPage(props){
 
     useState(async ()=>{
         
-        await fetch(localGetUserEndpoint+userId)
+        await fetch(productionGetUserEndpoint+userId)
         .then(res => res.json())
         .then(data => {setData(data);console.log(data,"data")})
         

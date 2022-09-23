@@ -46,7 +46,7 @@ export const Create = (props)=>{
             "foodImage": foodData.pic,
         }
     
-        const res = await fetch(localCreatFoodPostEndpoint, {
+        const res = await fetch(productionCreatFoodPostEndpoint, {
             method: 'POST',
             body: JSON.stringify(data),
             headers: {
@@ -85,7 +85,7 @@ export const Create = (props)=>{
             })  
             return;
         }else{
-            const res = await fetch(localCreatPostEndpoint+data.userId, {
+            const res = await fetch(productionCreatPostEndpoint+data.userId, {
                 method: 'POST',
                 body: JSON.stringify(postData),
                 headers: {

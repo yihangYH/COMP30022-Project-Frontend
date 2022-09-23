@@ -56,7 +56,7 @@ function Register(){
                 "favouriteRestaurant":data.favouriteRestaurant,
                 "image":data.pic.thumbUrl
             }
-            const res = await fetch(localRegisterEndpoint, {
+            const res = await fetch(productionRegisterEndpoint, {
                 method: 'POST',
                 body: JSON.stringify(registerRequest),
                 headers: {
