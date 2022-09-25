@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import Header from './header';
 import '../css/comment.css'
 import Food from './food';
-
+import Swal from 'sweetalert2'
 import PacmanLoader from "react-spinners/PacmanLoader";
 
 const override = {
@@ -15,8 +15,19 @@ const override = {
 const localGetPostEndpoint = 'http://localhost:8080/getPost/';
 const productionGetPostEndpoint = 'https://restaurant-at-unimelb-api.herokuapp.com/getPost/';
 
+const localshareEndpoint = 'http://localhost:3000/share/';
+const productionshareEndpoint = 'https://restaurant-at-unimelb-api.herokuapp.com/share/';
+
 function Comment(props){
-    if(localStorage.getItem("user")==null){
+    const url = window.location.href;
+    const isShared = url.includes("share");
+    const sharedStyle = {
+        display:"none"
+    }
+    if(!isShared){
+        sharedStyle.display = "";
+    }
+    if(localStorage.getItem("user")==null && !isShared){
         window.location.href = '/';
     }
     const { postId } = useParams()
@@ -45,6 +56,17 @@ function Comment(props){
         setLoading(true);
         window.location.href = '/editpost/'+userId+'/'+postId;
     }
+
+    const ShareClicked = () => {
+        console.log("asd")
+        Swal.fire({
+            title: 'Please copy the link below',
+            text: localshareEndpoint + userId + "/" + postId,
+            icon: 'success',
+            confirmButtonText: 'OK'
+        })
+    }
+
     const[data,setData] = useState();
 
 
@@ -60,10 +82,11 @@ function Comment(props){
                     <div style={cssStyle}>            
                         <PacmanLoader loading={loading} color="#FF7539" cssOverride={override} size={50} />
                     </div>
-                    <Header btnText="Log out" color="black" backgroundColor="white" border="2px solid black" setCssStyle={setCssStyle} setLoading={setLoading} cssStyle={style} loginOrlogout = {"logout"}/>
+                    <Header btnText="Log out" color="black" backgroundColor="white" border="2px solid black" isShared = {isShared} setCssStyle={setCssStyle} setLoading={setLoading} cssStyle={style} loginOrlogout = {"logout"}/>
                     <div className='button'>
-                        <button className='back' onClick={backToMain}>Back</button>
-                        <button className='edit' onClick={editClicked}>Edit</button>
+                        <button className='back' style={sharedStyle} onClick={backToMain}>Back</button>
+                        <button className='edit' style={sharedStyle} onClick={editClicked}>Edit</button>
+                        <button className='share' style={sharedStyle} onClick={ShareClicked}>Share</button>
                     </div>
                 </div>
                 <div className='detail'>
