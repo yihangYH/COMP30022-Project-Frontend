@@ -169,7 +169,7 @@ export const Edit = (url)=>{
             "comment": foodData.comment,
             "foodImage": foodData.pic.url,
         }
-        const res = await fetch(localCreatFoodPostEndpoint, {
+        const res = await fetch(productionCreatFoodPostEndpoint, {
             method: 'POST',
             body: JSON.stringify(data),
             headers: {
