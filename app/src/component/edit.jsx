@@ -20,7 +20,7 @@ const localDeletePostEndpoint = 'http://localhost:8080/deletePost/';
 const productionDeletePostEndpoint = 'https://restaurant-at-unimelb-api.herokuapp.com/deletePost/';
 
 const localCreatFoodPostEndpoint = 'http://localhost:8080/creatFoodPost/';
-const productionCreatFoodPostEndpoint = 'https://restaurant-at-unimelb-api.herokuapp.com/getPost/';
+const productionCreatFoodPostEndpoint = 'https://restaurant-at-unimelb-api.herokuapp.com/creatFoodPost/';
 
 const localUpdatePostEndpoint = 'http://localhost:8080/updatePost/';
 const productionUpdatePostEndpoint = 'https://restaurant-at-unimelb-api.herokuapp.com/updatePost/';
