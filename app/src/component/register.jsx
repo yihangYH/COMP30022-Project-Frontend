@@ -65,6 +65,17 @@ function Register(){
                 },
             })
             const response = await res.json();
+            if(response.status == "false"){
+                setLoading(false);
+                setCssStyle();
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'Email already exist',
+                    icon: 'error',
+                    confirmButtonText: 'Retry'
+                })
+                return;
+            }
             console.log(response,"response");
             console.log(registerRequest,"registerRequest");
             window.location.href = "/login"
