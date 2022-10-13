@@ -161,6 +161,12 @@ export const Edit = (url)=>{
             // console.log(response,"response");
             window.location.href = "/mainpage/" + userId;
     }
+    const back = async() => {
+        setCssStyle(style);
+        setLoading(true);
+
+        window.location.href = "/mainpage/" + userId;
+    }
     const subFormRequest = async (foodData) => {
         console.log(foodData,"subFormData");
         const data = {
@@ -330,8 +336,10 @@ export const Edit = (url)=>{
                         <PlusOutlined />
                     </div>}
                 </div>  
-                <Button htmlType="button" shape="round" className="cancle-btn" onClick={backToMain}>Delete</Button>
+                <Button htmlType="button" shape="round" className="cancle-btn" onClick={backToMain} style={{backgroundColor:"gray"}}>Delete</Button>
+                
                 <Button htmlType="submit" shape="round" className="submit-btn">Submit</Button>
+                <Button htmlType="button" shape="round" className="back-btn" onClick={back} style={{backgroundColor:"gray", marginLeft:"2%"}}>Back</Button>
             </Form>}
             {
                 forms.map((item,index)=>(
