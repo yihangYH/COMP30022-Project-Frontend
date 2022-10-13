@@ -24,7 +24,6 @@ function MaigPage(props){
         document.title = 'Main Page';
     });
     let [loading, setLoading] = useState(false);
-    // let [color, setColor] = useState("#ffffff");
     let[cssStyle, setCssStyle] = useState();
     const style = {
         zIndex:"9999",
