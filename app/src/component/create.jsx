@@ -14,7 +14,7 @@ const override = {
     top: "50%",
 };
 const localCreatFoodPostEndpoint = 'http://localhost:8080/creatFoodPost/';
-const productionCreatFoodPostEndpoint = 'https://restaurant-at-unimelb-api.herokuapp.com/getPost/';
+const productionCreatFoodPostEndpoint = 'https://restaurant-at-unimelb-api.herokuapp.com/creatFoodPost/';
 
 const localCreatPostEndpoint = 'http://localhost:8080/create/';
 const productionCreatPostEndpoint = 'https://restaurant-at-unimelb-api.herokuapp.com/create/';
