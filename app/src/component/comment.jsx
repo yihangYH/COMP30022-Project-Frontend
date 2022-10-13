@@ -61,7 +61,7 @@ function Comment(props){
         console.log("asd")
         Swal.fire({
             title: 'Please copy the link below',
-            text: localshareEndpoint + userId + "/" + postId,
+            text: productionshareEndpoint + userId + "/" + postId,
             icon: 'success',
             confirmButtonText: 'OK'
         })
