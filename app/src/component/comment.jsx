@@ -16,7 +16,7 @@ const localGetPostEndpoint = 'http://localhost:8080/getPost/';
 const productionGetPostEndpoint = 'https://restaurant-at-unimelb-api.herokuapp.com/getPost/';
 
 const localshareEndpoint = 'http://localhost:3000/share/';
-const productionshareEndpoint = 'https://restaurant-at-unimelb-api.herokuapp.com/share/';
+const productionshareEndpoint = 'https://restaurant-at-unimelb.herokuapp.com/share/';
 
 function Comment(props){
     const url = window.location.href;
